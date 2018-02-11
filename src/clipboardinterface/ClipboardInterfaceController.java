@@ -16,20 +16,27 @@ import javafx.scene.text.Text;
  */
 public class ClipboardInterfaceController {
   
+  final private ClipboardInterface clipboardInterface;
+
   @FXML
   private Text actiontarget;
   @FXML
   private TextArea buffer;
 
+  public ClipboardInterfaceController() {
+    this.clipboardInterface = new ClipboardInterface();
+  }
+
   @FXML
   protected void handleWriteButtonAction(ActionEvent event) {
-    buffer.setText("Write button pressed");
+    this.clipboardInterface.writeClipboard(buffer.getText());
     actiontarget.setText("Write button pressed");
   }
   
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
-    buffer.setText("Read button pressed");
+    String data = this.clipboardInterface.readClipboard();
+    buffer.setText(data);
     actiontarget.setText("Read button pressed");
   }
 }
