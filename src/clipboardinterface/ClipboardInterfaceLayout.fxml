@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:controller="clipboardinterface.ClipboardInterfaceController"
-  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
-  styleClass="root">
+<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="clipboardinterface.ClipboardInterfaceController">
   <padding>
-    <Insets top="25" right="25" bottom="10" left="25"/>
+    <Insets bottom="10" left="25" right="25" top="25" />
   </padding>
+   <children>
 
-  <Text id="welcome-text"
-    text="Welcome"
-    GridPane.columnIndex="0" GridPane.rowIndex="0"
-    GridPane.columnSpan="2"/>
+     <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-  <Label text="User Name:"
-    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-  <TextField
-    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-  <Label text="Password:"
-    GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-  <PasswordField fx:id="passwordField"
-    GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-
-  <HBox spacing="10" alignment="BOTTOM_LEFT"
-    GridPane.columnIndex="1" GridPane.rowIndex="4">
-    <Button text="Sign In"
-            onAction="#handleSubmitButtonAction"/>
-  </HBox>
-
-  <Text fx:id="actiontarget" id="actiontarget"
-    GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+     <Text id="actiontarget" fx:id="actiontarget" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+      <TextArea fx:id="buffer" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <Button fx:id="readButton" mnemonicParsing="false" onAction="#handleReadButtonAction" text="Read" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Button fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" text="Write" />
+         </children>
+      </HBox>
+   </children>
 
     <stylesheets>
       <URL value="@ClipboardInterfaceStyle.css" />
     </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>
