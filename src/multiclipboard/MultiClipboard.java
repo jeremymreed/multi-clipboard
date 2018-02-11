@@ -19,7 +19,7 @@ public class MultiClipboard extends Application {
   
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("ClipboardInterfaceLayout.fxml"));
     
     Scene scene = new Scene(root);
     
