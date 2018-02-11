@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package multiclipboard;
+package clipboardinterface;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
