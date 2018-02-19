@@ -24,10 +24,14 @@
  */
 package multiclipboard;
 
+import clipboardinterface.monitor.NukeClipboardTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.Clipboard;
 import javafx.stage.Stage;
 
 /**
@@ -38,12 +42,19 @@ public class MultiClipboard extends Application {
   
   @Override
   public void start(Stage stage) throws Exception {
+    System.out.println( "Started stage." );
+
     Parent root = FXMLLoader.load(getClass().getResource("/clipboardinterface/ClipboardInterfaceLayout.fxml"));
-    
+
     Scene scene = new Scene(root);
-    
+
     stage.setScene(scene);
     stage.show();
+
+
+    ExecutorService executorService = Executors.newCachedThreadPool( );
+    executorService.submit(new NukeClipboardTask( ) );
+    executorService.shutdown( );
   }
 
   /**
