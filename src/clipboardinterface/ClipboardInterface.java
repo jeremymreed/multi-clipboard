@@ -35,19 +35,18 @@ import javafx.scene.input.DataFormat;
 public class ClipboardInterface {
   public String readClipboard() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
-    
+
     if (clipboard.hasString()) {
       return clipboard.getString();
     } else {
       return "";
     }
   }
-  
+
   public void writeClipboard(String data) {
     Clipboard clipboard = Clipboard.getSystemClipboard();
     ClipboardContent contents = new ClipboardContent();
-    
-    contents.putString(data);
+
     contents.put(DataFormat.PLAIN_TEXT, data);
     clipboard.setContent(contents);
   }

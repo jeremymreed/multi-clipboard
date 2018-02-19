@@ -34,7 +34,7 @@ import javafx.scene.text.Text;
  * @author jeremyr
  */
 public class ClipboardInterfaceController {
-  
+
   final private ClipboardInterface clipboardInterface;
 
   @FXML
@@ -51,7 +51,7 @@ public class ClipboardInterfaceController {
     this.clipboardInterface.writeClipboard(buffer.getText());
     actiontarget.setText("Write button pressed");
   }
-  
+
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
     String data = this.clipboardInterface.readClipboard();
