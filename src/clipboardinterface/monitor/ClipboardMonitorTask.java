@@ -35,8 +35,11 @@ public class ClipboardMonitorTask extends Task {
 
   private volatile SimpleStringProperty text;
 
+  private final ClipboardMonitorRunnable clipboardMonitorRunnable;
+
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.text = text;
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable( this.text );
   }
 
   @Override
@@ -45,7 +48,7 @@ public class ClipboardMonitorTask extends Task {
 
     try {
       while(true) {
-        Platform.runLater(new ClipboardMonitorRunnable( this.text ) );
+        Platform.runLater(this.clipboardMonitorRunnable);
 
         Thread.sleep(100);
       }
