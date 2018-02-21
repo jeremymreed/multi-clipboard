@@ -23,22 +23,31 @@
  */
 package clipboardinterface.monitor;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 
 /**
  *
  * @author jeremyr
  */
-public class NukeClipboardRunnable implements Runnable {
+public class ClipboardMonitorRunnable implements Runnable {
+
+  private volatile SimpleStringProperty text;
+
+  public ClipboardMonitorRunnable(SimpleStringProperty text) {
+    this.text = text;
+  }
 
   @Override
   public void run() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
-    ClipboardContent contents = new ClipboardContent();
 
-    contents.put(DataFormat.PLAIN_TEXT, "");
-    clipboard.setContent(contents);
+    String data = "";
+
+    if (clipboard.hasString()) {
+      data = clipboard.getString();
+    }
+
+    this.text.set(data);
   }
 }

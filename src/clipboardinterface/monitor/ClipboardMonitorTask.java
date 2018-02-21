@@ -24,13 +24,20 @@
 package clipboardinterface.monitor;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 
 /**
  *
  * @author jeremyr
  */
-public class NukeClipboardTask extends Task {
+public class ClipboardMonitorTask extends Task {
+
+  private volatile SimpleStringProperty text;
+
+  public ClipboardMonitorTask( SimpleStringProperty text ) {
+    this.text = text;
+  }
 
   @Override
   protected Object call() throws Exception {
@@ -38,9 +45,9 @@ public class NukeClipboardTask extends Task {
 
     try {
       while(true) {
-        Platform.runLater(new NukeClipboardRunnable( ) );
+        Platform.runLater(new ClipboardMonitorRunnable( this.text ) );
 
-        Thread.sleep(5000);
+        Thread.sleep(100);
       }
 
     } catch ( Exception exception ) {

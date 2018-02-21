@@ -24,6 +24,11 @@
  */
 package clipboardinterface;
 
+import clipboardinterface.monitor.ClipboardMonitorTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -35,6 +40,8 @@ import javafx.scene.text.Text;
  */
 public class ClipboardInterfaceController {
 
+  private SimpleStringProperty text;
+
   final private ClipboardInterface clipboardInterface;
 
   @FXML
@@ -42,20 +49,33 @@ public class ClipboardInterfaceController {
   @FXML
   private TextArea buffer;
 
-  public ClipboardInterfaceController() {
+  public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
+  }
+
+  public void initialize( ) {
+    this.text = new SimpleStringProperty( );
+    this.buffer.textProperty().bind(this.text);
+    this.text.set("");
+    this.spawnThreads( );
+  }
+
+  public void spawnThreads( ) {
+    ExecutorService executorService = Executors.newCachedThreadPool( );
+    executorService.submit(new ClipboardMonitorTask( this.text ) );
+    executorService.shutdown( );
   }
 
   @FXML
   protected void handleWriteButtonAction(ActionEvent event) {
-    this.clipboardInterface.writeClipboard(buffer.getText());
+    this.clipboardInterface.writeClipboard(this.text.get( ) );
     actiontarget.setText("Write button pressed");
   }
 
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
     String data = this.clipboardInterface.readClipboard();
-    buffer.setText(data);
+    this.text.set(data);
     actiontarget.setText("Read button pressed");
   }
 }
