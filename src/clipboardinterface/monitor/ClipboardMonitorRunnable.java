@@ -33,21 +33,24 @@ import javafx.scene.input.Clipboard;
 public class ClipboardMonitorRunnable implements Runnable {
 
   private volatile SimpleStringProperty text;
+  private String oldData;
 
   public ClipboardMonitorRunnable(SimpleStringProperty text) {
     this.text = text;
+    this.oldData = "";
   }
 
   @Override
   public void run() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
 
-    String data = "";
-
     if (clipboard.hasString()) {
-      data = clipboard.getString();
-    }
+      String data = clipboard.getString();
 
-    this.text.set(data);
+      if (!this.oldData.equals(data)) {
+        this.oldData = data;
+        this.text.set(data);
+      }
+    }
   }
 }
