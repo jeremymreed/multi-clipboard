@@ -44,7 +44,7 @@ public class ClipboardMonitorTask extends Task {
 
   @Override
   protected Object call() throws Exception {
-    System.out.println( "Started NukeClipboardTask!" );
+    System.out.println( "Started ClipboardMonitorTask!" );
 
     try {
       while(true) {
