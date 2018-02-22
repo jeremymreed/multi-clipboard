@@ -24,6 +24,7 @@
  */
 package multiclipboard;
 
+import clipboardinterface.ClipboardInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -36,19 +37,35 @@ import javafx.stage.Stage;
  * @author jeremyr
  */
 public class MultiClipboard extends Application {
-  
+
+  private ClipboardInterfaceController clipboardInterfaceController;
+
   @Override
   public void start(Stage stage) throws Exception {
     System.out.println( "Started stage." );
 
     Platform.setImplicitExit(true);
 
-    Parent root = FXMLLoader.load(getClass().getResource("/clipboardinterface/ClipboardInterfaceLayout.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/clipboardinterface/ClipboardInterfaceLayout.fxml"));
+
+    Parent root = (Parent)fxmlLoader.load();
+
+    this.clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
+
+    if (this.clipboardInterfaceController == null) {
+      System.out.println("clipboardInterfaceController is null");
+    }
 
     Scene scene = new Scene(root);
 
     stage.setScene(scene);
     stage.show();
+  }
+
+  @Override
+  public void stop() {
+    System.out.println("stop() called");
+    this.clipboardInterfaceController.stopThreads( );
   }
 
   /**

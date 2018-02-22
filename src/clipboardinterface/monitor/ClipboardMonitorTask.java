@@ -53,6 +53,8 @@ public class ClipboardMonitorTask extends Task {
         Thread.sleep(100);
       }
 
+    } catch (InterruptedException interruptedException) {
+      System.out.println("ClipboardMonitorTask: Thread was interrupted, cleaning up!");
     } catch ( Exception exception ) {
       exception.printStackTrace( );
     }

@@ -43,6 +43,8 @@ public class ClipboardInterfaceController {
 
   final private ClipboardInterface clipboardInterface;
 
+  final private ExecutorService executorService;
+
   @FXML
   private Text actiontarget;
   @FXML
@@ -50,6 +52,7 @@ public class ClipboardInterfaceController {
 
   public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
+    this.executorService = Executors.newCachedThreadPool( );
   }
 
   public void initialize( ) {
@@ -60,9 +63,13 @@ public class ClipboardInterfaceController {
   }
 
   public void spawnThreads( ) {
-    ExecutorService executorService = Executors.newCachedThreadPool( );
-    executorService.submit(new ClipboardMonitorTask( this.text ) );
-    executorService.shutdown( );
+    this.executorService.submit(new ClipboardMonitorTask( this.text ) );
+  }
+
+  public void stopThreads( ) {
+    System.out.println("stopThreads() called");
+    this.executorService.shutdown( );
+    this.executorService.shutdownNow( );
   }
 
   @FXML
