@@ -31,6 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import threads.manager.ThreadManager;
 
 /**
  *
@@ -39,10 +40,13 @@ import javafx.stage.Stage;
 public class MultiClipboard extends Application {
 
   private ClipboardInterfaceController clipboardInterfaceController;
+  private ThreadManager threadManager;
 
   @Override
   public void start(Stage stage) throws Exception {
     System.out.println( "Started stage." );
+
+    this.threadManager = new ThreadManager();
 
     Platform.setImplicitExit(true);
 
@@ -52,9 +56,7 @@ public class MultiClipboard extends Application {
 
     this.clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
 
-    if (this.clipboardInterfaceController == null) {
-      System.out.println("clipboardInterfaceController is null");
-    }
+    this.threadManager.spawnThreads(this.clipboardInterfaceController.getText());
 
     Scene scene = new Scene(root);
 
@@ -65,7 +67,7 @@ public class MultiClipboard extends Application {
   @Override
   public void stop() {
     System.out.println("stop() called");
-    this.clipboardInterfaceController.stopThreads( );
+    this.threadManager.stopThreads();
   }
 
   /**

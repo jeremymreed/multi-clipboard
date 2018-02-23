@@ -24,7 +24,7 @@
  */
 package clipboardinterface;
 
-import clipboardinterface.monitor.ClipboardMonitorTask;
+import threads.clipboardmonitor.ClipboardMonitorTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.beans.property.SimpleStringProperty;
@@ -43,8 +43,6 @@ public class ClipboardInterfaceController {
 
   final private ClipboardInterface clipboardInterface;
 
-  final private ExecutorService executorService;
-
   @FXML
   private Text actiontarget;
   @FXML
@@ -52,24 +50,16 @@ public class ClipboardInterfaceController {
 
   public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
-    this.executorService = Executors.newCachedThreadPool( );
   }
 
   public void initialize( ) {
     this.text = new SimpleStringProperty( );
     this.buffer.textProperty().bind(this.text);
     this.text.set("");
-    this.spawnThreads( );
   }
 
-  public void spawnThreads( ) {
-    this.executorService.submit(new ClipboardMonitorTask( this.text ) );
-  }
-
-  public void stopThreads( ) {
-    System.out.println("stopThreads() called");
-    this.executorService.shutdown( );
-    this.executorService.shutdownNow( );
+  public SimpleStringProperty getText() {
+    return this.text;
   }
 
   @FXML

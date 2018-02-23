@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package clipboardinterface.monitor;
+package threads.clipboardmonitor;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
