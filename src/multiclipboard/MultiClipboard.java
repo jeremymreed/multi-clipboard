@@ -60,6 +60,7 @@ public class MultiClipboard extends Application {
 
     Scene scene = new Scene(root);
 
+    stage.setTitle("Clipboard Monitor");
     stage.setScene(scene);
     stage.show();
   }
