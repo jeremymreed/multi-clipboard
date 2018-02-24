@@ -44,6 +44,8 @@ public class ClipboardInterfaceController {
   private Text actiontarget;
   @FXML
   private TextArea buffer;
+  @FXML
+  private TextArea clipboard;
 
   public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
@@ -51,7 +53,7 @@ public class ClipboardInterfaceController {
 
   public void initialize( ) {
     this.text = new SimpleStringProperty( );
-    this.buffer.textProperty().bind(this.text);
+    this.clipboard.textProperty().bind(this.text);
     this.text.set("");
   }
 
@@ -60,15 +62,20 @@ public class ClipboardInterfaceController {
   }
 
   @FXML
+  protected void handleClearClipboardButtonAction(ActionEvent event) {
+    this.clipboardInterface.writeClipboard("");
+  }
+
+  @FXML
   protected void handleWriteButtonAction(ActionEvent event) {
-    this.clipboardInterface.writeClipboard(this.text.get( ) );
+    this.clipboardInterface.writeClipboard(this.buffer.getText());
     actiontarget.setText("Write button pressed");
   }
 
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
     String data = this.clipboardInterface.readClipboard();
-    this.text.set(data);
+    this.buffer.setText(data);
     actiontarget.setText("Read button pressed");
   }
 }
