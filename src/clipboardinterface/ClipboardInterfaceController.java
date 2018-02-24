@@ -47,8 +47,11 @@ public class ClipboardInterfaceController {
   @FXML
   private TextArea clipboard;
 
+  private Boolean shouldWrapText;
+
   public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
+    this.shouldWrapText = false;
   }
 
   public void initialize( ) {
@@ -64,6 +67,12 @@ public class ClipboardInterfaceController {
   @FXML
   protected void handleClearClipboardButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard("");
+  }
+
+  @FXML
+  protected void handleWrapTextRadioButtonAction(ActionEvent event) {
+    this.shouldWrapText = !this.shouldWrapText;
+    this.clipboard.setWrapText(this.shouldWrapText);
   }
 
   @FXML
