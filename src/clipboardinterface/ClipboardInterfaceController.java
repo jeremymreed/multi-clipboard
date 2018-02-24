@@ -24,9 +24,6 @@
  */
 package clipboardinterface;
 
-import threads.clipboardmonitor.ClipboardMonitorTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
