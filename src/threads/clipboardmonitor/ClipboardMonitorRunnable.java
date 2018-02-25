@@ -51,6 +51,8 @@ public class ClipboardMonitorRunnable implements Runnable {
         this.oldData = data;
         this.text.set(data);
       }
+    } else {
+      this.text.set("");
     }
   }
 }
