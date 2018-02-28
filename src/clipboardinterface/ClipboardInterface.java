@@ -52,6 +52,16 @@ public class ClipboardInterface {
   }
 
   /***
+   * Empties the clipboard of all data.
+   * isClipboardEmpty() should return true after this method is executed.
+   */
+  public void emptyClipboard() {
+    Clipboard clipboard = Clipboard.getSystemClipboard();
+
+    clipboard.setContent(null);
+  }
+
+  /***
    * Tells us if there is *no* data of any kind on the system clipboard.
    * Not even an empty string.
    * @return Boolean true if the clipboard is empty, false otherwise.
