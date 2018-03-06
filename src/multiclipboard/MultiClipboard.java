@@ -73,6 +73,9 @@ public class MultiClipboard extends Application {
   public void stop() {
     System.out.println("stop() called");
     this.threadManager.stopThreads();
+
+    LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    loggerContext.stop();
   }
 
   /**
