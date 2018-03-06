@@ -31,6 +31,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import threads.manager.ThreadManager;
 
 /**
@@ -75,6 +77,9 @@ public class MultiClipboard extends Application {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger("Hello World");
+    logger.info("Hello World");
+
     launch(args);
   }
 }
