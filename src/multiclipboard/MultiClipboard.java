@@ -82,10 +82,6 @@ public class MultiClipboard extends Application {
     Logger logger = LoggerFactory.getLogger("Hello World");
     logger.info("Hello World");
 
-    // Print internal state
-    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-    StatusPrinter.print(lc);
-
     launch(args);
   }
 }
