@@ -24,6 +24,8 @@
  */
 package multiclipboard;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import clipboardinterface.ClipboardInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -79,6 +81,10 @@ public class MultiClipboard extends Application {
   public static void main(String[] args) {
     Logger logger = LoggerFactory.getLogger("Hello World");
     logger.info("Hello World");
+
+    // Print internal state
+    LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+    StatusPrinter.print(lc);
 
     launch(args);
   }
