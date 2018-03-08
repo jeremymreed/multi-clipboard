@@ -23,6 +23,8 @@
  */
 package threads.clipboardmonitor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.Clipboard;
 
@@ -32,10 +34,12 @@ import javafx.scene.input.Clipboard;
  */
 public class ClipboardMonitorRunnable implements Runnable {
 
+  Logger logger;
   private volatile SimpleStringProperty text;
   private String oldData;
 
   public ClipboardMonitorRunnable(SimpleStringProperty text) {
+    this.logger = LoggerFactory.getLogger("Hello World");
     this.text = text;
     this.oldData = "";
   }
@@ -43,16 +47,34 @@ public class ClipboardMonitorRunnable implements Runnable {
   @Override
   public void run() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
+    try {
+      if (clipboard.hasString()) {
+        String data = clipboard.getString();
 
-    if (clipboard.hasString()) {
-      String data = clipboard.getString();
+        if (data == null) {
+          this.logger.error("data is null!");
+        }
 
-      if (!this.oldData.equals(data)) {
-        this.oldData = data;
-        this.text.set(data);
+        if (data != null && !this.oldData.equals(data)) {
+          this.oldData = data;
+          this.text.set(data);
+        }
+      } else {
+        this.text.set("");
       }
-    } else {
-      this.text.set("");
+    } catch (NullPointerException nullPointerException) {
+      if (clipboard == null) {
+        this.logger.error("clipboard is null", nullPointerException);
+      }
+
+      if (this.oldData == null) {
+        this.logger.error("this.oldData is null!", nullPointerException);
+        this.oldData = "";
+      }
+
+      if (this.text == null) {
+        this.logger.error("this.text is null!", nullPointerException);
+      }
     }
   }
 }

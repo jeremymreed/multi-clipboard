@@ -25,7 +25,6 @@
 package multiclipboard;
 
 import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.core.util.StatusPrinter;
 import clipboardinterface.ClipboardInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
