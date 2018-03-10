@@ -106,6 +106,6 @@
      </GridPane>
    </center>
    <stylesheets>
-     <URL value="@../css/ClipboardInterfaceStyle.css" />
+     <URL value="@../css/CommonStyle.css" />
    </stylesheets>
 </BorderPane>
