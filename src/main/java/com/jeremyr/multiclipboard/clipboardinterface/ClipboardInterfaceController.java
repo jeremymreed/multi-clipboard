@@ -67,12 +67,14 @@ public class ClipboardInterfaceController {
   @FXML
   protected void handleClearClipboardButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard("");
+    actiontarget.setText("Clipboard cleared");
   }
 
   @FXML
   protected void handleWrapTextRadioButtonAction(ActionEvent event) {
     this.shouldWrapText = !this.shouldWrapText;
     this.clipboard.setWrapText(this.shouldWrapText);
+    actiontarget.setText("Clipboard Wrap Text " + (this.shouldWrapText ? "enabled" : "disabled"));
   }
 
   @FXML
@@ -86,5 +88,11 @@ public class ClipboardInterfaceController {
     String data = this.clipboardInterface.readClipboard();
     this.buffer.setText(data);
     actiontarget.setText("Read button pressed");
+  }
+
+  @FXML
+  protected void handleClearBufferButtonAction(ActionEvent event) {
+    this.buffer.setText("");
+    actiontarget.setText("Buffer cleared");
   }
 }
