@@ -51,7 +51,7 @@
       </MenuBar>
    </top>
    <center>
-     <GridPane alignment="center" hgap="10" styleClass="root" vgap="10">
+     <GridPane alignment="center" hgap="10" styleClass="root" stylesheets="@../css/CommonStyle.css" vgap="10">
        <padding>
          <Insets bottom="10" left="25" right="25" top="25" />
        </padding>
