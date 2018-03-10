@@ -52,8 +52,6 @@ public class MultiClipboard extends Application {
     this.threadManager = new ThreadManager();
 
     Platform.setImplicitExit(true);
-
-    System.out.println("Did we find it? " + getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
     
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
 
