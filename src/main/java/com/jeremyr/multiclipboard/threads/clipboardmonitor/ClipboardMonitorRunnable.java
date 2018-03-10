@@ -36,20 +36,21 @@ public class ClipboardMonitorRunnable implements Runnable {
 
   Logger logger;
   private volatile SimpleStringProperty text;
+  private final Clipboard clipboard;
   private String oldData;
 
-  public ClipboardMonitorRunnable(SimpleStringProperty text) {
+  public ClipboardMonitorRunnable(Clipboard clipboard, SimpleStringProperty text) {
     this.logger = LoggerFactory.getLogger("Hello World");
+    this.clipboard = clipboard;
     this.text = text;
     this.oldData = "";
   }
 
   @Override
   public void run() {
-    Clipboard clipboard = Clipboard.getSystemClipboard();
     try {
-      if (clipboard.hasString()) {
-        String data = clipboard.getString();
+      if (this.clipboard.hasString()) {
+        String data = this.clipboard.getString();
 
         if (data == null) {
           this.logger.error("data is null!");
@@ -63,7 +64,7 @@ public class ClipboardMonitorRunnable implements Runnable {
         this.text.set("");
       }
     } catch (NullPointerException nullPointerException) {
-      if (clipboard == null) {
+      if (this.clipboard == null) {
         this.logger.error("clipboard is null", nullPointerException);
       }
 

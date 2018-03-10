@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
+import javafx.scene.input.Clipboard;
 
 /**
  *
@@ -42,7 +43,7 @@ public class ClipboardMonitorTask extends Task {
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.logger = LoggerFactory.getLogger("Hello World");
     this.text = text;
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable( this.text );
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(Clipboard.getSystemClipboard(), this.text );
   }
 
   @Override
