@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2018 Jeremy M. Reed
+ * Copyright 2018 jeremyr.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,47 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package threads.clipboardmonitor;
+package com.jeremyr.multiclipboard.threads.manager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javafx.application.Platform;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.concurrent.Task;
+import com.jeremyr.multiclipboard.threads.clipboardmonitor.ClipboardMonitorTask;
 
 /**
  *
  * @author jeremyr
  */
-public class ClipboardMonitorTask extends Task {
+public class ThreadManager {
 
-  Logger logger;
-  private volatile SimpleStringProperty text;
-  private final ClipboardMonitorRunnable clipboardMonitorRunnable;
+  final private ExecutorService executorService;
 
-  public ClipboardMonitorTask( SimpleStringProperty text ) {
-    this.logger = LoggerFactory.getLogger("Hello World");
-    this.text = text;
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable( this.text );
+  public ThreadManager() {
+    this.executorService = Executors.newCachedThreadPool();
   }
 
-  @Override
-  protected Object call() throws Exception {
-    System.out.println( "Started ClipboardMonitorTask!" );
+  public void spawnThreads(SimpleStringProperty text) {
+    this.executorService.submit(new ClipboardMonitorTask( text ) );
+  }
 
-    try {
-      while(true) {
-        Platform.runLater(this.clipboardMonitorRunnable);
-
-        Thread.sleep(100);
-      }
-
-    } catch (InterruptedException interruptedException) {
-      System.out.println("ClipboardMonitorTask: Thread was interrupted, cleaning up!");
-    } catch ( Exception exception ) {
-      this.logger.error("Caught Exception: ", exception);
-    }
-
-    return null;
+  public void stopThreads( ) {
+    System.out.println("stopThreads() called");
+    this.executorService.shutdown( );
+    this.executorService.shutdownNow( );
   }
 }

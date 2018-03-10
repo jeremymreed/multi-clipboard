@@ -22,10 +22,10 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-package multiclipboard;
+package com.jeremyr.multiclipboard;
 
 import ch.qos.logback.classic.LoggerContext;
-import clipboardinterface.ClipboardInterfaceController;
+import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import threads.manager.ThreadManager;
+import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
 
 /**
  *
@@ -53,7 +53,9 @@ public class MultiClipboard extends Application {
 
     Platform.setImplicitExit(true);
 
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/clipboardinterface/ClipboardInterfaceLayout.fxml"));
+    System.out.println("Did we find it? " + getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
+    
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
 
     Parent root = (Parent)fxmlLoader.load();
 
@@ -81,9 +83,13 @@ public class MultiClipboard extends Application {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    Logger logger = LoggerFactory.getLogger("Hello World");
-    logger.info("Hello World");
-
+    try {
+      Logger logger = LoggerFactory.getLogger("Hello World");
+      logger.info("Hello World");
     launch(args);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+    
   }
 }

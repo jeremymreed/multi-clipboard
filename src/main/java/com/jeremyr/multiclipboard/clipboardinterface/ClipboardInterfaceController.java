@@ -22,7 +22,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-package clipboardinterface;
+package com.jeremyr.multiclipboard.clipboardinterface;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
