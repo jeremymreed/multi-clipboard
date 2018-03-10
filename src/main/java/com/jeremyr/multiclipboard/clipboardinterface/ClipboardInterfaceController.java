@@ -24,6 +24,7 @@
  */
 package com.jeremyr.multiclipboard.clipboardinterface;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,6 +65,21 @@ public class ClipboardInterfaceController {
 
   public SimpleStringProperty getText() {
     return this.text;
+  }
+
+  @FXML
+  protected void handleCloseAction(ActionEvent event) {
+    Platform.exit();
+  }
+
+  @FXML
+  protected void handleAboutAction(ActionEvent event) {
+    // TODO: Show a stage with some interesting information.
+  }
+
+  @FXML
+  protected void handleLicenseAction(ActionEvent event) {
+    // TODO: Show a stage with the text of the MIT license.
   }
 
   @FXML
