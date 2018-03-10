@@ -41,7 +41,7 @@ public class ClipboardInterfaceController {
   final private ClipboardInterface clipboardInterface;
 
   @FXML
-  private Text actiontarget;
+  private Text statusmessage;
   @FXML
   private TextArea buffer;
   @FXML
@@ -69,39 +69,39 @@ public class ClipboardInterfaceController {
   @FXML
   protected void handleClearClipboardButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard("");
-    actiontarget.setText("Clipboard cleared");
+    statusmessage.setText("Cleared the clipboard");
   }
 
   @FXML
   protected void handleWrapTextRadioButtonAction(ActionEvent event) {
     this.shouldClipboardWrapText = !this.shouldClipboardWrapText;
     this.clipboard.setWrapText(this.shouldClipboardWrapText);
-    actiontarget.setText("Clipboard Wrap Text " + (this.shouldClipboardWrapText ? "enabled" : "disabled"));
+    statusmessage.setText("Clipboard Wrap Text " + (this.shouldClipboardWrapText ? "enabled" : "disabled"));
   }
 
   @FXML
   protected void handleWriteButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard(this.buffer.getText());
-    actiontarget.setText("Write button pressed");
+    statusmessage.setText("Wrote buffer contents to the clipboard");
   }
 
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
     String data = this.clipboardInterface.readClipboard();
     this.buffer.setText(data);
-    actiontarget.setText("Read button pressed");
+    statusmessage.setText("Copied clipboard contents to the buffer");
   }
 
   @FXML
   protected void handleClearBufferButtonAction(ActionEvent event) {
     this.buffer.setText("");
-    actiontarget.setText("Buffer cleared");
+    statusmessage.setText("Cleared the buffer");
   }
 
   @FXML
   protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
     this.shouldBufferWrapText = !this.shouldBufferWrapText;
     this.buffer.setWrapText(this.shouldBufferWrapText);
-    actiontarget.setText("Buffer Wrap Text " + (this.shouldBufferWrapText ? "enabled" : "disabled"));
+    statusmessage.setText("Buffer Wrap Text " + (this.shouldBufferWrapText ? "enabled" : "disabled"));
   }
 }

@@ -40,7 +40,7 @@
 
      <Text id="welcome-text" text="Clipboard Manager" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-     <Text id="actiontarget" fx:id="actiontarget" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+     <Text id="statusmessage" fx:id="statusmessage" GridPane.columnSpan="2" GridPane.rowIndex="7" />
       <TextArea fx:id="clipboard" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
       <HBox GridPane.rowIndex="5">
          <children>
