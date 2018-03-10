@@ -47,11 +47,13 @@ public class ClipboardInterfaceController {
   @FXML
   private TextArea clipboard;
 
-  private Boolean shouldWrapText;
+  private Boolean shouldClipboardWrapText;
+  private Boolean shouldBufferWrapText;
 
   public ClipboardInterfaceController( ) {
     this.clipboardInterface = new ClipboardInterface();
-    this.shouldWrapText = false;
+    this.shouldClipboardWrapText = false;
+    this.shouldBufferWrapText = false;
   }
 
   public void initialize( ) {
@@ -72,9 +74,9 @@ public class ClipboardInterfaceController {
 
   @FXML
   protected void handleWrapTextRadioButtonAction(ActionEvent event) {
-    this.shouldWrapText = !this.shouldWrapText;
-    this.clipboard.setWrapText(this.shouldWrapText);
-    actiontarget.setText("Clipboard Wrap Text " + (this.shouldWrapText ? "enabled" : "disabled"));
+    this.shouldClipboardWrapText = !this.shouldClipboardWrapText;
+    this.clipboard.setWrapText(this.shouldClipboardWrapText);
+    actiontarget.setText("Clipboard Wrap Text " + (this.shouldClipboardWrapText ? "enabled" : "disabled"));
   }
 
   @FXML
@@ -94,5 +96,12 @@ public class ClipboardInterfaceController {
   protected void handleClearBufferButtonAction(ActionEvent event) {
     this.buffer.setText("");
     actiontarget.setText("Buffer cleared");
+  }
+
+  @FXML
+  protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
+    this.shouldBufferWrapText = !this.shouldBufferWrapText;
+    this.buffer.setWrapText(this.shouldBufferWrapText);
+    actiontarget.setText("Buffer Wrap Text " + (this.shouldBufferWrapText ? "enabled" : "disabled"));
   }
 }

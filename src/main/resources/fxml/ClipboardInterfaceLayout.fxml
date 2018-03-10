@@ -60,6 +60,11 @@
             <Button mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
          </children>
       </HBox>
+      <HBox GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <RadioButton mnemonicParsing="false" onAction="#handleBufferWrapTextRadioButtonAction" text="Wrap Text" />
+         </children>
+      </HBox>
    </children>
 
     <stylesheets>
