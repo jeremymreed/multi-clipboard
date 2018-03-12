@@ -26,7 +26,7 @@
 <configuration debug="true">
 
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <file>MultiClipboard.log</file>
+    <file>${user.home}/.multiclipboard/logs/multiclipboard-test.log</file>
     <append>true</append>
     <!-- set immediateFlush to false for much higher logging throughput -->
     <immediateFlush>true</immediateFlush>
