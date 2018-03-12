@@ -34,7 +34,7 @@ import javafx.scene.input.Clipboard;
  */
 public class ClipboardMonitorRunnable implements Runnable {
 
-  Logger logger;
+  private final Logger logger;
   private volatile SimpleStringProperty text;
   private final Clipboard clipboard;
   private String oldData;
