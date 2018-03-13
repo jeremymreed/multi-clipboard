@@ -23,6 +23,7 @@
  */
 package clipboardinterface;
 
+import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterface;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import junitrules.JavaFXThreadingRule;
