@@ -69,11 +69,6 @@ public class ClipboardInterface {
   public Boolean isClipboardEmpty() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
 
-    if (clipboard.getContentTypes().isEmpty()) {
-      System.out.println("Clipboard is empty");
-      return true;
-    }
-
-    return false;
+    return clipboard.getContentTypes().isEmpty();
   }
 }
