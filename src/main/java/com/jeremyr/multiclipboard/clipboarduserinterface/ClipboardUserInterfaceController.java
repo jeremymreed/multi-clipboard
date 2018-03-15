@@ -22,8 +22,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.jeremyr.multiclipboard.clipboardinterface;
+package com.jeremyr.multiclipboard.clipboarduserinterface;
 
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -38,11 +39,11 @@ import javafx.scene.text.Text;
  *
  * @author jeremyr
  */
-public class ClipboardInterfaceController {
+public class ClipboardUserInterfaceController {
 
   private SimpleStringProperty text;
 
-  final private ClipboardInterface clipboardInterface;
+  final private JavaFXClipboardWrapper clipboardInterface;
 
   @FXML
   private Text statusmessage;
@@ -54,8 +55,8 @@ public class ClipboardInterfaceController {
   private Boolean shouldClipboardWrapText;
   private Boolean shouldBufferWrapText;
 
-  public ClipboardInterfaceController( ) {
-    this.clipboardInterface = new ClipboardInterface();
+  public ClipboardUserInterfaceController( ) {
+    this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldClipboardWrapText = false;
     this.shouldBufferWrapText = false;
   }

@@ -23,7 +23,7 @@
  */
 package clipboardinterface;
 
-import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterface;
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import junitrules.JavaFXThreadingRule;
@@ -74,7 +74,7 @@ public class ClipboardInterfaceTest {
     content.putString(expected);
     javaFXClipboard.setContent(content);
 
-    ClipboardInterface clipboardInterface = new ClipboardInterface();
+    JavaFXClipboardWrapper clipboardInterface = new JavaFXClipboardWrapper();
     String actual = clipboardInterface.readClipboard();
     assertEquals(expected, actual);
   }
@@ -86,7 +86,7 @@ public class ClipboardInterfaceTest {
   public void testWriteClipboard() {
     System.out.println("writeClipboard");
     String expected = "Hello World";
-    ClipboardInterface clipboardInterface = new ClipboardInterface();
+    JavaFXClipboardWrapper clipboardInterface = new JavaFXClipboardWrapper();
     clipboardInterface.writeClipboard(expected);
 
     Clipboard javaFXClipboard = Clipboard.getSystemClipboard();
@@ -102,7 +102,7 @@ public class ClipboardInterfaceTest {
   @Test
   public void testEmptyClipboard() {
     System.out.println("emptyClipboard");
-    ClipboardInterface clipboardInterface = new ClipboardInterface();
+    JavaFXClipboardWrapper clipboardInterface = new JavaFXClipboardWrapper();
     clipboardInterface.emptyClipboard();
 
     Clipboard javaFXClipboard = Clipboard.getSystemClipboard();
@@ -118,7 +118,7 @@ public class ClipboardInterfaceTest {
     Clipboard javaFXClipboard = Clipboard.getSystemClipboard();
     javaFXClipboard.setContent(null);
 
-    ClipboardInterface clipboardInterface = new ClipboardInterface();
+    JavaFXClipboardWrapper clipboardInterface = new JavaFXClipboardWrapper();
 
     assertEquals(true, clipboardInterface.isClipboardEmpty());
   }

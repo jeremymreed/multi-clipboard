@@ -25,7 +25,7 @@
 package com.jeremyr.multiclipboard;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
+import com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +42,7 @@ import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
  */
 public class MultiClipboard extends Application {
 
-  private ClipboardInterfaceController clipboardInterfaceController;
+  private ClipboardUserInterfaceController clipboardInterfaceController;
   private ThreadManager threadManager;
 
   @Override
@@ -57,7 +57,7 @@ public class MultiClipboard extends Application {
 
     Parent root = (Parent)fxmlLoader.load();
 
-    this.clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
+    this.clipboardInterfaceController = (ClipboardUserInterfaceController) fxmlLoader.getController();
 
     this.threadManager.spawnThreads(this.clipboardInterfaceController.getText());
 

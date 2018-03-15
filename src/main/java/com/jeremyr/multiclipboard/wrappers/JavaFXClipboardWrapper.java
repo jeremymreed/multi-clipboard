@@ -22,7 +22,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.jeremyr.multiclipboard.clipboardinterface;
+package com.jeremyr.multiclipboard.wrappers;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -32,7 +32,7 @@ import javafx.scene.input.DataFormat;
  *
  * @author jeremyr
  */
-public class ClipboardInterface {
+public class JavaFXClipboardWrapper {
   public String readClipboard() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
 
