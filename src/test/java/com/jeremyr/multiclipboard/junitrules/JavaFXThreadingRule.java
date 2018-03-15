@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package junitrules;
+package com.jeremyr.multiclipboard.junitrules;
 
 import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;

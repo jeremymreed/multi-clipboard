@@ -53,7 +53,7 @@ public class MultiClipboard extends Application {
 
     Platform.setImplicitExit(true);
     
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardUserInterfaceLayout.fxml"));
 
     Parent root = (Parent)fxmlLoader.load();
 

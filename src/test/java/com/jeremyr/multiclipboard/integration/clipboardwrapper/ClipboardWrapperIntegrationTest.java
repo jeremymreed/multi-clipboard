@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package clipboardinterface;
+package com.jeremyr.multiclipboard.integration.clipboardwrapper;
 
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import junitrules.JavaFXThreadingRule;
+import com.jeremyr.multiclipboard.junitrules.JavaFXThreadingRule;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,9 +39,9 @@ import org.junit.Rule;
  *
  * @author jeremyr
  */
-public class ClipboardInterfaceTest {
+public class ClipboardWrapperIntegrationTest {
   
-  public ClipboardInterfaceTest() {
+  public ClipboardWrapperIntegrationTest() {
   }
 
   @Rule public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
