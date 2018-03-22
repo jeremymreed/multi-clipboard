@@ -98,9 +98,8 @@ public class MultiClipboard extends Application {
    */
   public static void main(String[] args) {
     try {
-      // TODO: Change the name of the logger to something relevant.
-      Logger logger = LoggerFactory.getLogger("Hello World");
-      logger.info("Hello World");
+      Logger logger = LoggerFactory.getLogger("MultiClipboard");
+      logger.info("Starting the MultiClipboard App");
       launch(args);
     } catch (Exception exception) {
       exception.printStackTrace();

@@ -71,7 +71,7 @@ public class ClipboardMonitorRunnable implements Runnable {
    * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
    */
   public ClipboardMonitorRunnable(Clipboard clipboard, SimpleStringProperty text) {
-    this.logger = LoggerFactory.getLogger("Hello World");
+    this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.clipboard = clipboard;
     this.text = text;
     this.oldData = "";
