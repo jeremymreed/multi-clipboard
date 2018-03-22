@@ -31,6 +31,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
@@ -57,6 +58,12 @@ public class ClipboardUserInterfaceController {
   private TextArea buffer;
 
   /**
+   * This RadioButton toggles the bufferWrapText's wrap text property.
+   */
+  @FXML
+  private RadioButton bufferWrapText;
+
+  /**
    * This TextArea is the clipboard.  This is where the clipboard's current contents are shown to the user.
    * The user should not be able to edit this TextArea.  It is programmatically updated.
    *
@@ -68,13 +75,11 @@ public class ClipboardUserInterfaceController {
   @FXML
   private TextArea clipboard;
 
-  // TODO: We really don't need these two Booleans.  The RadioButton control has an isSelected() method.
-  /** Boolean value that tells the UI if the clipboard TextArea contents should be wrapped. */
-  private Boolean shouldClipboardWrapText;
-
-  /** Boolean value that tells the UI if the buffer TextArea contents should be wrapped. */
-  private Boolean shouldBufferWrapText;
-
+  /**
+   * This RadioButton toggles the clipboardWrapText's wrap text property.
+   */
+  @FXML
+  private RadioButton clipboardWrapText;
   /**
    * Default Constructor.
    *
@@ -83,8 +88,6 @@ public class ClipboardUserInterfaceController {
    */
   public ClipboardUserInterfaceController( ) {
     this.clipboardInterface = new JavaFXClipboardWrapper();
-    this.shouldClipboardWrapText = false;
-    this.shouldBufferWrapText = false;
   }
 
   /**
@@ -96,8 +99,6 @@ public class ClipboardUserInterfaceController {
    */
   public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
     this.clipboardInterface = clipboardInterface;
-    this.shouldClipboardWrapText = false;
-    this.shouldBufferWrapText = false;
   }
 
   /**
@@ -207,14 +208,15 @@ public class ClipboardUserInterfaceController {
    */
   @FXML
   protected void handleWrapTextRadioButtonAction(ActionEvent event) {
-    this.shouldClipboardWrapText = !this.shouldClipboardWrapText;
-    this.clipboard.setWrapText(this.shouldClipboardWrapText);
-    statusmessage.setText("Clipboard Wrap Text " + (this.shouldClipboardWrapText ? "enabled" : "disabled"));
+    this.clipboard.setWrapText(this.clipboardWrapText.isSelected());
+    statusmessage.setText("Clipboard Wrap Text " + (this.clipboardWrapText.isSelected() ? "enabled" : "disabled"));
   }
 
   /**
    * This handler is invoked when the user clicks on the "Write To Clipboard"
    * Button.
+   *
+   * TODO: Change the name of this method to make it clearer which radio button it's associated with...
    *
    * @param event The ActionEvent object describing the event.
    */
@@ -257,8 +259,7 @@ public class ClipboardUserInterfaceController {
    */
   @FXML
   protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
-    this.shouldBufferWrapText = !this.shouldBufferWrapText;
-    this.buffer.setWrapText(this.shouldBufferWrapText);
-    statusmessage.setText("Buffer Wrap Text " + (this.shouldBufferWrapText ? "enabled" : "disabled"));
+    this.buffer.setWrapText(this.bufferWrapText.isSelected());
+    statusmessage.setText("Buffer Wrap Text " + (this.bufferWrapText.isSelected() ? "enabled" : "disabled"));
   }
 }
