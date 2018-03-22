@@ -61,6 +61,12 @@ public class ClipboardUserInterfaceController {
     this.shouldBufferWrapText = false;
   }
 
+  /*
+   *  This method is called in the process of creating a JavaFX controller.
+   *  First the constructor is called, then FXML annotated fields are populated,
+   *  then this method gets called.  It is called automatically as part of the
+   *  creation process.
+   */
   public void initialize( ) {
     this.text = new SimpleStringProperty( );
     this.clipboard.textProperty().bind(this.text);
