@@ -36,38 +36,73 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 /**
+ * JavaFX Controller for the ClipboardUserInterface.
+ * This is the primary user interface the user will interact with.
  *
- * @author jeremyr
+ * @author Jeremy M. Reed
  */
 public class ClipboardUserInterfaceController {
 
   private SimpleStringProperty text;
 
+  /** JavaFX System Clipboard Wrapper object. */
   final private JavaFXClipboardWrapper clipboardInterface;
 
+  /** Displays a status message at the bottom of the stage. */
   @FXML
   private Text statusmessage;
+
+  /** This TextArea is the buffer.  This is a storage area or scratch editing area */
   @FXML
   private TextArea buffer;
+
+  /**
+   * This TextArea is the clipboard.  This is where the clipboard's current contents are shown to the user.
+   * The user should not be able to edit this TextArea.  It is programmatically updated.
+   *
+   * This TextArea's textProperty is bound to an SimpleStringProperty observable value.
+   *
+   * TODO: Making this read only makes it rather difficult to read the text.  Find a way to make this readable, while
+   * enforcing the read-only requirement.
+   */
   @FXML
   private TextArea clipboard;
 
+  // TODO: We really don't need these two Booleans.  The RadioButton control has an isSelected() method.
+  /** Boolean value that tells the UI if the clipboard TextArea contents should be wrapped. */
   private Boolean shouldClipboardWrapText;
+
+  /** Boolean value that tells the UI if the buffer TextArea contents should be wrapped. */
   private Boolean shouldBufferWrapText;
 
+  /**
+   * Default Constructor.
+   *
+   * Gets JavaFXClipboardWrapper instance.
+   * Sets non-FXML fields to default values.
+   */
   public ClipboardUserInterfaceController( ) {
     this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldClipboardWrapText = false;
     this.shouldBufferWrapText = false;
   }
 
+  /**
+   * Dependency Injection Constructor.
+   * Get JavaFXClipboardWrapper from constructor parameters.
+   * Set non-FXML fields to default values.
+   *
+   * @param clipboardInterface
+   */
   public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
     this.clipboardInterface = clipboardInterface;
     this.shouldClipboardWrapText = false;
     this.shouldBufferWrapText = false;
   }
 
-  /*
+  /**
+   *  Sets up FXML annotated fields.
+   *
    *  This method is called in the process of creating a JavaFX controller.
    *  First the constructor is called, then FXML annotated fields are populated,
    *  then this method gets called.  It is called automatically as part of the
@@ -79,15 +114,31 @@ public class ClipboardUserInterfaceController {
     this.text.set("");
   }
 
+  /**
+   * Returns a reference to the SimpleStringProperty observable value bound to the clipboard TextArea.
+   * Needed by the Thread Manager.
+   *
+   * @return  The SimpleStringProperty observable value bound to the clipboard TextArea.
+   */
   public SimpleStringProperty getText() {
     return this.text;
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "File->Close" menu item.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleCloseAction(ActionEvent event) {
     Platform.exit();
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Help->About" menu item.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleAboutAction(ActionEvent event) {
     Alert aboutAlert = new Alert(AlertType.INFORMATION);
@@ -98,6 +149,11 @@ public class ClipboardUserInterfaceController {
     aboutAlert.showAndWait();
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Help->License" menu item.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleLicenseAction(ActionEvent event) {
     Alert licenseAlert = new Alert(AlertType.INFORMATION);
@@ -131,12 +187,24 @@ public class ClipboardUserInterfaceController {
     licenseAlert.showAndWait();
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Clear Clipboard"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleClearClipboardButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard("");
     statusmessage.setText("Cleared the clipboard");
   }
 
+  /**
+   * This handler is invoked when the user toggles the "Wrap Text" Radio Box
+   * with the "clipboard-wrap-text-radio-button" id.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleWrapTextRadioButtonAction(ActionEvent event) {
     this.shouldClipboardWrapText = !this.shouldClipboardWrapText;
@@ -144,12 +212,24 @@ public class ClipboardUserInterfaceController {
     statusmessage.setText("Clipboard Wrap Text " + (this.shouldClipboardWrapText ? "enabled" : "disabled"));
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Write To Clipboard"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleWriteButtonAction(ActionEvent event) {
     this.clipboardInterface.writeClipboard(this.buffer.getText());
     statusmessage.setText("Wrote buffer contents to the clipboard");
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Read From Clipboard"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleReadButtonAction(ActionEvent event) {
     String data = this.clipboardInterface.readClipboard();
@@ -157,12 +237,24 @@ public class ClipboardUserInterfaceController {
     statusmessage.setText("Copied clipboard contents to the buffer");
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Clear Buffer"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleClearBufferButtonAction(ActionEvent event) {
     this.buffer.setText("");
     statusmessage.setText("Cleared the buffer");
   }
 
+  /**
+   * This handler is invoked when the user clicks on the "Wrap Text"
+   * Radio Button with the "buffer-wrap-text-radio-button" id.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
     this.shouldBufferWrapText = !this.shouldBufferWrapText;

@@ -29,10 +29,18 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 
 /**
+ * This class is a wrapper for the JavaFX System Clipboard.
  *
  * @author jeremyr
  */
 public class JavaFXClipboardWrapper {
+
+  /**
+   * If the JavaFX System Clipboard contains a string, return that string,
+   * otherwise return an empty string.
+   *
+   * @return A String with either the contents of the JavaFX System Clipboard or an empty string.
+   */
   public String readClipboard() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
 
@@ -43,6 +51,11 @@ public class JavaFXClipboardWrapper {
     }
   }
 
+  /**
+   * Writes the String data passed into to the JavaFX System Clipboard.
+   *
+   * @param data
+   */
   public void writeClipboard(String data) {
     Clipboard clipboard = Clipboard.getSystemClipboard();
     ClipboardContent contents = new ClipboardContent();
@@ -51,9 +64,8 @@ public class JavaFXClipboardWrapper {
     clipboard.setContent(contents);
   }
 
-  /***
-   * Empties the clipboard of all data.
-   * isClipboardEmpty() should return true after this method is executed.
+  /**
+   * Empties the JavaFX System Clipboard.
    */
   public void emptyClipboard() {
     Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -61,9 +73,10 @@ public class JavaFXClipboardWrapper {
     clipboard.setContent(null);
   }
 
-  /***
+  /**
    * Tells us if there is *no* data of any kind on the system clipboard.
    * Not even an empty string.
+   *
    * @return Boolean true if the clipboard is empty, false otherwise.
    */
   public Boolean isClipboardEmpty() {

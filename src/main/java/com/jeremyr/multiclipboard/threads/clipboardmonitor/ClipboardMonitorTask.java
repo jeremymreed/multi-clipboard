@@ -31,21 +31,52 @@ import javafx.concurrent.Task;
 import javafx.scene.input.Clipboard;
 
 /**
+ * This Task is responsible for calling Platform.runLater with our Runnable
+ * every 100 milliseconds.  TODO: Perhaps read this from a config file.
+ *
+ * We have this in a separate Task, because we really don't want to call
+ * Thread.sleep on the JavaFX Application Thread.
  *
  * @author jeremyr
  */
 public class ClipboardMonitorTask extends Task {
 
+  /** Reference to the Application Logger object */
   private final Logger logger;
+
+  /**
+   * Reference to the SimpleStringProperty bound to the clipboard TextArea
+   *
+   * TODO: I don't think we really need a data member for this, since we're going
+   * to pass it straight into the ClipboardMonitorRunnable when we create it in
+   * the constructor.
+   * We don't do anything else with it.. So no need to hold a reference here.
+   */
   private volatile SimpleStringProperty text;
+
+  /** Refernce to the ClipboardMonitorRunnable to be run via Platform.runLater.*/
   private final ClipboardMonitorRunnable clipboardMonitorRunnable;
 
+  /**
+   * Constructor with dependencies passed in.
+   *
+   * Set up data members.
+   *
+   * @param text
+   */
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.logger = LoggerFactory.getLogger("Hello World");
     this.text = text;
     this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(Clipboard.getSystemClipboard(), this.text );
   }
 
+  /**
+   * Passes ClipboardMonitorRunnable to Platform.runLater every 100 milliseconds.
+   * Handle interrupts.
+   *
+   * @return Nothing. TODO: See if there's a better class in javafx.concurrent for this job.
+   * @throws Exception
+   */
   @Override
   protected Object call() throws Exception {
     System.out.println( "Started ClipboardMonitorTask!" );

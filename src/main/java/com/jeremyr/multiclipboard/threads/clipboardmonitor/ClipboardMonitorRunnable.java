@@ -29,16 +29,47 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.Clipboard;
 
 /**
+ * This runnable is responsible for checking the JavaFX clipboard for changes, and
+ * updating the SimpleStringProperty observable value with the value of the clipboard contents.
  *
  * @author jeremyr
  */
 public class ClipboardMonitorRunnable implements Runnable {
 
+  /** Reference to the application's logger object */
   private final Logger logger;
+
+  /**
+   * Reference to the Observable value bound to the clipboard TextArea.
+   * This is set volatile.
+   *
+   * TODO: Find out if this really needs to be made volatile, since this Runnable is
+   * scheduled for execution by Platform.runLater, which runs code on the JavaFX Application Thread.
+   * IF all reads and writes to this variable occur on the JavaFX Application Thread, seems like
+   * this should not be set volatile.  Need to get advice.
+   */
   private volatile SimpleStringProperty text;
+
+  /** Reference to the JavaFX Clipboard. */
   private final Clipboard clipboard;
+
+  /** Store the old clipboard contents value. */
   private String oldData;
 
+  /**
+   * Controller with dependencies passed in.
+   * We are passing in the JavaFX System Clipboard since that can be done outside
+   * of the JavaFX Application Thread.  Actually using it requires us to be on the
+   * JavaFX Application Thread.
+   *
+   * TODO: Consider moving the line of code getting theJavaFX System Clipboard
+   * into this constructor, as it only runs once.
+   *
+   * Set up data members.
+   *
+   * @param clipboard The JavaFX System Clipboard.
+   * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
+   */
   public ClipboardMonitorRunnable(Clipboard clipboard, SimpleStringProperty text) {
     this.logger = LoggerFactory.getLogger("Hello World");
     this.clipboard = clipboard;
@@ -46,6 +77,12 @@ public class ClipboardMonitorRunnable implements Runnable {
     this.oldData = "";
   }
 
+  /**
+   * Code to be run on the JavaFX Application Thread.
+   * Monitors the JavaFX System Clipboard for changes.
+   * Updates the SimpleStringProperty Observable Value if the JavaFX System Clipboard
+   * contents change.
+   */
   @Override
   public void run() {
     try {

@@ -29,21 +29,32 @@ import javafx.beans.property.SimpleStringProperty;
 import com.jeremyr.multiclipboard.threads.clipboardmonitor.ClipboardMonitorTask;
 
 /**
+ * Manages our threads.  Starts and stops them.  Shuts down and cleans up.
+ * Holds our ExecutorService object, and wraps around it.
  *
  * @author jeremyr
  */
 public class ThreadManager {
 
+  /** Interface to the Thread Pool */
   final private ExecutorService executorService;
 
+  /** Get the Thread Pool */
   public ThreadManager() {
     this.executorService = Executors.newCachedThreadPool();
   }
 
+  /** Starts the ClipboardMonitorTask thread */
   public void spawnThreads(SimpleStringProperty text) {
     this.executorService.submit(new ClipboardMonitorTask( text ) );
   }
 
+  /**
+   * Shuts down the Thread Pool, and forces threads to shutdown.
+   * Called when the Application's close method is called.
+   *
+   * TODO: Get rid of that debug print.
+   */
   public void stopThreads( ) {
     System.out.println("stopThreads() called");
     this.executorService.shutdown( );

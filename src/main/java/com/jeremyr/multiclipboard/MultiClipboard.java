@@ -37,14 +37,22 @@ import org.slf4j.LoggerFactory;
 import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
 
 /**
+ * Main class entry point for the MultiClipboard JavaFX application.
  *
- * @author jeremyr
+ * @author Jeremy M. Reed
  */
 public class MultiClipboard extends Application {
 
   private ClipboardUserInterfaceController clipboardInterfaceController;
   private ThreadManager threadManager;
 
+  /**
+   * Called by JavaFX when the main stage is started.
+   * Starts the Thread Manager.
+   *
+   * @param stage
+   * @throws Exception
+   */
   @Override
   public void start(Stage stage) throws Exception {
     System.out.println( "Started stage." );
@@ -68,6 +76,12 @@ public class MultiClipboard extends Application {
     stage.show();
   }
 
+  /**
+   * Called by JavaFX when the main stage is closed.
+   * Does all required clean up.
+   *   - Tells the Thread Manager to shutdown threads.
+   *   - Tells the logger to stop logging and clean up.
+   */
   @Override
   public void stop() {
     System.out.println("stop() called");
@@ -78,13 +92,16 @@ public class MultiClipboard extends Application {
   }
 
   /**
+   * Creates the logger, then launches the JavaFX app.
+   *
    * @param args the command line arguments
    */
   public static void main(String[] args) {
     try {
+      // TODO: Change the name of the logger to something relevant.
       Logger logger = LoggerFactory.getLogger("Hello World");
       logger.info("Hello World");
-    launch(args);
+      launch(args);
     } catch (Exception exception) {
       exception.printStackTrace();
     }

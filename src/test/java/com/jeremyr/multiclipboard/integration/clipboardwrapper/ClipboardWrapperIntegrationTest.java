@@ -36,6 +36,10 @@ import static org.junit.Assert.*;
 import org.junit.Rule;
 
 /**
+ * This is an integration test for the ClipboardWrapper class.
+ *
+ * TODO: Needs a few more tests, specifically what if the JavaFX System Clipboard contains non-string data?
+ * TODO: Without mocking, it'll be difficult to test the unhappy cases...  Needs more thought.
  *
  * @author jeremyr
  */
@@ -44,6 +48,13 @@ public class ClipboardWrapperIntegrationTest {
   public ClipboardWrapperIntegrationTest() {
   }
 
+  /**
+   * JUnit rule that allows us to run these tests on the JavaFX Application Thread.
+   *
+   * See:
+   *  https://stackoverflow.com/questions/18429422/basic-junit-test-for-javafx-8 and
+   *  http://andrewtill.blogspot.com/2012/10/junit-rule-for-javafx-controller-testing.html
+   */
   @Rule public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
 
   @BeforeClass
@@ -63,7 +74,7 @@ public class ClipboardWrapperIntegrationTest {
   }
 
   /**
-   * Test of readClipboard method, of class ClipboardInterface.
+   * Test of readClipboard method, of class ClipboardWrapper.
    */
   @Test
   public void testReadClipboard() {
@@ -80,7 +91,7 @@ public class ClipboardWrapperIntegrationTest {
   }
 
   /**
-   * Test of writeClipboard method, of class ClipboardInterface.
+   * Test of writeClipboard method, of class ClipboardWrapper.
    */
   @Test
   public void testWriteClipboard() {
@@ -97,7 +108,7 @@ public class ClipboardWrapperIntegrationTest {
   }
 
   /**
-   * Test of emptyClipboard method, of class ClipboardInterface.
+   * Test of emptyClipboard method, of class ClipboardWrapper.
    */
   @Test
   public void testEmptyClipboard() {
@@ -110,7 +121,7 @@ public class ClipboardWrapperIntegrationTest {
   }
 
   /**
-   * Test of isClipboardEmpty method, of class ClipboardInterface.
+   * Test of isClipboardEmpty method, of class ClipboardWrapper.
    */
   @Test
   public void testIsClipboardEmpty() {
