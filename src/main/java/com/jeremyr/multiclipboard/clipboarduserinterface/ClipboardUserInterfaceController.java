@@ -207,7 +207,7 @@ public class ClipboardUserInterfaceController {
    * @param event The ActionEvent object describing the event.
    */
   @FXML
-  protected void handleWrapTextRadioButtonAction(ActionEvent event) {
+  protected void handleClipboardWrapTextRadioButtonAction(ActionEvent event) {
     this.clipboard.setWrapText(this.clipboardWrapText.isSelected());
     statusmessage.setText("Clipboard Wrap Text " + (this.clipboardWrapText.isSelected() ? "enabled" : "disabled"));
   }
