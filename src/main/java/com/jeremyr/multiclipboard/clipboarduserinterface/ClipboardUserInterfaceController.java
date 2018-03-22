@@ -61,6 +61,12 @@ public class ClipboardUserInterfaceController {
     this.shouldBufferWrapText = false;
   }
 
+  public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
+    this.clipboardInterface = clipboardInterface;
+    this.shouldClipboardWrapText = false;
+    this.shouldBufferWrapText = false;
+  }
+
   /*
    *  This method is called in the process of creating a JavaFX controller.
    *  First the constructor is called, then FXML annotated fields are populated,
