@@ -62,17 +62,13 @@ public class ClipboardMonitorRunnable implements Runnable {
    * of the JavaFX Application Thread.  Actually using it requires us to be on the
    * JavaFX Application Thread.
    *
-   * TODO: Consider moving the line of code getting theJavaFX System Clipboard
-   * into this constructor, as it only runs once.
-   *
    * Set up data members.
    *
-   * @param clipboard The JavaFX System Clipboard.
    * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
    */
-  public ClipboardMonitorRunnable(Clipboard clipboard, SimpleStringProperty text) {
+  public ClipboardMonitorRunnable(SimpleStringProperty text) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboard = clipboard;
+    this.clipboard = Clipboard.getSystemClipboard();
     this.text = text;
     this.oldData = "";
   }

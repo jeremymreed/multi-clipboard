@@ -56,7 +56,7 @@ public class ClipboardMonitorTask extends Task {
    */
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(Clipboard.getSystemClipboard(), text );
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(text);
   }
 
   /**
