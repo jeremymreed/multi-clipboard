@@ -44,16 +44,6 @@ public class ClipboardMonitorTask extends Task {
   /** Reference to the Application Logger object */
   private final Logger logger;
 
-  /**
-   * Reference to the SimpleStringProperty bound to the clipboard TextArea
-   *
-   * TODO: I don't think we really need a data member for this, since we're going
-   * to pass it straight into the ClipboardMonitorRunnable when we create it in
-   * the constructor.
-   * We don't do anything else with it.. So no need to hold a reference here.
-   */
-  private volatile SimpleStringProperty text;
-
   /** Refernce to the ClipboardMonitorRunnable to be run via Platform.runLater.*/
   private final ClipboardMonitorRunnable clipboardMonitorRunnable;
 
@@ -66,8 +56,7 @@ public class ClipboardMonitorTask extends Task {
    */
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.text = text;
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(Clipboard.getSystemClipboard(), this.text );
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(Clipboard.getSystemClipboard(), text );
   }
 
   /**
