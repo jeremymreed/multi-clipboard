@@ -216,7 +216,6 @@ public class ClipboardUserInterfaceController {
    * This handler is invoked when the user clicks on the "Write To Clipboard"
    * Button.
    *
-   * TODO: Change the name of this method to make it clearer which radio button it's associated with...
    *
    * @param event The ActionEvent object describing the event.
    */
