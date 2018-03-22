@@ -50,8 +50,8 @@ public class MultiClipboard extends Application {
    * Called by JavaFX when the main stage is started.
    * Starts the Thread Manager.
    *
-   * @param stage
-   * @throws Exception
+   * @param stage The stage that is starting.
+   * @throws Exception The generic Exception class, can throw any exception.
    */
   @Override
   public void start(Stage stage) throws Exception {

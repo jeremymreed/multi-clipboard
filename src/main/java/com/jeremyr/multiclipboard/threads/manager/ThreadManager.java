@@ -49,7 +49,11 @@ public class ThreadManager {
     this.executorService = Executors.newCachedThreadPool();
   }
 
-  /** Starts the ClipboardMonitorTask thread */
+  /**
+   * Starts the ClipboardMonitorTask thread
+   *
+   * @param text The Observable Value bound to the Clipboard TextArea.
+   */
   public void spawnThreads(SimpleStringProperty text) {
     this.executorService.submit(new ClipboardMonitorTask( text ) );
   }

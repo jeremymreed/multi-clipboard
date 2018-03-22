@@ -52,7 +52,7 @@ public class ClipboardMonitorTask extends Task {
    *
    * Set up data members.
    *
-   * @param text
+   * @param text The Observable Value bound to the Clipboard TextArea.
    */
   public ClipboardMonitorTask( SimpleStringProperty text ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
@@ -64,7 +64,7 @@ public class ClipboardMonitorTask extends Task {
    * Handle interrupts.
    *
    * @return Nothing. TODO: See if there's a better class in javafx.concurrent for this job.
-   * @throws Exception
+   * @throws Exception The generic Exception class, can throw any exception.
    */
   @Override
   protected Object call() throws Exception {

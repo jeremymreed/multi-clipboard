@@ -95,7 +95,8 @@ public class ClipboardUserInterfaceController {
    * Get JavaFXClipboardWrapper from constructor parameters.
    * Set non-FXML fields to default values.
    *
-   * @param clipboardInterface
+   * @param clipboardInterface The JavaFXClipboardWrapper class used to access the clipboard.
+   * Intended for injecting mocks of this dependency.
    */
   public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
     this.clipboardInterface = clipboardInterface;
@@ -126,7 +127,7 @@ public class ClipboardUserInterfaceController {
   }
 
   /**
-   * This handler is invoked when the user clicks on the "File->Close" menu item.
+   * This handler is invoked when the user clicks on the "File.Close" menu item.
    *
    * @param event The ActionEvent object describing the event.
    */
@@ -136,7 +137,7 @@ public class ClipboardUserInterfaceController {
   }
 
   /**
-   * This handler is invoked when the user clicks on the "Help->About" menu item.
+   * This handler is invoked when the user clicks on the "Help.About" menu item.
    *
    * @param event The ActionEvent object describing the event.
    */
@@ -151,7 +152,7 @@ public class ClipboardUserInterfaceController {
   }
 
   /**
-   * This handler is invoked when the user clicks on the "Help->License" menu item.
+   * This handler is invoked when the user clicks on the "Help.License" menu item.
    *
    * @param event The ActionEvent object describing the event.
    */

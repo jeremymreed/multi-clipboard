@@ -54,7 +54,7 @@ public class JavaFXClipboardWrapper {
   /**
    * Writes the String data passed into to the JavaFX System Clipboard.
    *
-   * @param data
+   * @param data The String data to write to the clipboard.
    */
   public void writeClipboard(String data) {
     Clipboard clipboard = Clipboard.getSystemClipboard();
