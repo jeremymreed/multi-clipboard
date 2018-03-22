@@ -23,6 +23,8 @@
  */
 package com.jeremyr.multiclipboard.threads.manager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.beans.property.SimpleStringProperty;
@@ -36,11 +38,14 @@ import com.jeremyr.multiclipboard.threads.clipboardmonitor.ClipboardMonitorTask;
  */
 public class ThreadManager {
 
+  final private Logger logger;
+
   /** Interface to the Thread Pool */
   final private ExecutorService executorService;
 
   /** Get the Thread Pool */
   public ThreadManager() {
+    this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.executorService = Executors.newCachedThreadPool();
   }
 
@@ -52,11 +57,9 @@ public class ThreadManager {
   /**
    * Shuts down the Thread Pool, and forces threads to shutdown.
    * Called when the Application's close method is called.
-   *
-   * TODO: Get rid of that debug print.
    */
   public void stopThreads( ) {
-    System.out.println("stopThreads() called");
+    this.logger.info("ThreadManager: Stopping threads");
     this.executorService.shutdown( );
     this.executorService.shutdownNow( );
   }
