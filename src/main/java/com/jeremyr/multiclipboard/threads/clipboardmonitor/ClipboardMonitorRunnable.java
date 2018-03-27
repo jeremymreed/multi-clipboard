@@ -82,7 +82,7 @@ public class ClipboardMonitorRunnable implements Runnable {
   @Override
   public void run() {
     try {
-      if (this.clipboard.hasString()) {
+      if (this.clipboard.hasString() && this.clipboard.getString() != null) {
         String data = this.clipboard.getString();
 
         if (data == null) {
