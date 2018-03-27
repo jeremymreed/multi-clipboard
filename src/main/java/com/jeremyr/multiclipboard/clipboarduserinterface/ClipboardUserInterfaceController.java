@@ -80,6 +80,13 @@ public class ClipboardUserInterfaceController {
    */
   @FXML
   private RadioButton clipboardWrapText;
+
+  /**
+   * This RadioButton controls the ClipboardMonitor's nuke clipboard feature.
+   */
+  @FXML
+  private RadioButton nukeClipboardRadioButton;
+
   /**
    * Default Constructor.
    *
@@ -211,6 +218,11 @@ public class ClipboardUserInterfaceController {
   protected void handleClipboardWrapTextRadioButtonAction(ActionEvent event) {
     this.clipboard.setWrapText(this.clipboardWrapText.isSelected());
     statusmessage.setText("Clipboard Wrap Text " + (this.clipboardWrapText.isSelected() ? "enabled" : "disabled"));
+  }
+
+  @FXML
+  protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
+    throw new UnsupportedOperationException("Not implemented yet");
   }
 
   /**
