@@ -23,14 +23,11 @@
  */
 package com.jeremyr.multiclipboard.threads.clipboardmonitor;
 
-import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 
 /**
  * This runnable is responsible for checking the JavaFX clipboard for changes, and
@@ -57,13 +54,10 @@ public class ClipboardMonitorRunnable implements Runnable {
   /** This AtomicBoolean determines if we should be monitoring the clipboard for changes
    * or clearing it every time the Runnable's run() method is called.
    */
-  private AtomicBoolean shouldNukeClipboard;
+  private final AtomicBoolean shouldNukeClipboard;
 
   /** Reference to the JavaFX Clipboard. */
   private final Clipboard clipboard;
-
-  /** Store the old clipboard contents value. */
-  private String oldData;
 
   /**
    * Controller with dependencies passed in.
@@ -82,7 +76,6 @@ public class ClipboardMonitorRunnable implements Runnable {
     this.clipboard = Clipboard.getSystemClipboard();
     this.text = text;
     this.shouldNukeClipboard = shouldNukeClipboard;
-    this.oldData = "";
   }
 
   /**
@@ -97,7 +90,6 @@ public class ClipboardMonitorRunnable implements Runnable {
       if (this.shouldNukeClipboard.get()) {
         clipboard.setContent(null);
         this.text.set("");
-        this.oldData = null;
       } else {
         if (this.clipboard.hasString() && this.clipboard.getString() != null) {
           String data = this.clipboard.getString();
@@ -106,9 +98,10 @@ public class ClipboardMonitorRunnable implements Runnable {
             this.logger.error("data is null!");
           }
 
-          if (data != null && !this.oldData.equals(data)) {
-            this.oldData = data;
+          if (data != null) {
             this.text.set(data);
+          } else {
+            this.text.set("");
           }
         } else {
           this.text.set("");
@@ -117,11 +110,6 @@ public class ClipboardMonitorRunnable implements Runnable {
     } catch (NullPointerException nullPointerException) {
       if (this.clipboard == null) {
         this.logger.error("clipboard is null", nullPointerException);
-      }
-
-      if (this.oldData == null) {
-        this.logger.error("this.oldData is null!", nullPointerException);
-        this.oldData = "";
       }
 
       if (this.text == null) {
