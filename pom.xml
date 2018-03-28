@@ -4,7 +4,7 @@
 
     <groupId>com.jeremyr</groupId>
     <artifactId>MultiClipboard</artifactId>
-    <version>2.4.2</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
 
     <name>MultiClipboard</name>
