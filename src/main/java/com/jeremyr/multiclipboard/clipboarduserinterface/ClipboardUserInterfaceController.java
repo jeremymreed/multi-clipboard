@@ -25,6 +25,7 @@
 package com.jeremyr.multiclipboard.clipboarduserinterface;
 
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -45,6 +46,9 @@ import javafx.scene.text.Text;
 public class ClipboardUserInterfaceController {
 
   private SimpleStringProperty text;
+
+  /** This AtomicBoolean controls the Clipboard Monitor's nuke clipboard feature */
+  private AtomicBoolean shouldNukeClipboard;
 
   /** JavaFX System Clipboard Wrapper object. */
   final private JavaFXClipboardWrapper clipboardInterface;
@@ -95,6 +99,8 @@ public class ClipboardUserInterfaceController {
    */
   public ClipboardUserInterfaceController( ) {
     this.clipboardInterface = new JavaFXClipboardWrapper();
+    this.shouldNukeClipboard = new AtomicBoolean();
+    this.shouldNukeClipboard.set(false);
   }
 
   /**
@@ -107,6 +113,8 @@ public class ClipboardUserInterfaceController {
    */
   public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
     this.clipboardInterface = clipboardInterface;
+    this.shouldNukeClipboard = new AtomicBoolean();
+    this.shouldNukeClipboard.set(false);
   }
 
   /**
@@ -131,6 +139,16 @@ public class ClipboardUserInterfaceController {
    */
   public SimpleStringProperty getText() {
     return this.text;
+  }
+
+  /**
+   * Returns a reference to the AtomicBoolean variable used to control the
+   * Clipboard Monitor's nuke clipboard feature.
+   *
+   * @return The AtomicBoolean that controls the Clipboard Monitor's nuke clipboard feature
+   */
+  public AtomicBoolean getShouldNukeClipboard() {
+    return this.shouldNukeClipboard;
   }
 
   /**
@@ -222,7 +240,7 @@ public class ClipboardUserInterfaceController {
 
   @FXML
   protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
-    throw new UnsupportedOperationException("Not implemented yet");
+    this.shouldNukeClipboard.set(this.nukeClipboardRadioButton.isSelected());
   }
 
   /**

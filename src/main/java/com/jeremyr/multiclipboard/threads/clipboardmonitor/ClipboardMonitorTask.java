@@ -23,6 +23,7 @@
  */
 package com.jeremyr.multiclipboard.threads.clipboardmonitor;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.application.Platform;
@@ -53,10 +54,12 @@ public class ClipboardMonitorTask extends Task {
    * Set up data members.
    *
    * @param text The Observable Value bound to the Clipboard TextArea.
+   * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
+   * nuke clipboard feature.
    */
-  public ClipboardMonitorTask( SimpleStringProperty text ) {
+  public ClipboardMonitorTask( SimpleStringProperty text, AtomicBoolean shouldNukeClipboard ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(text);
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(text, shouldNukeClipboard);
   }
 
   /**

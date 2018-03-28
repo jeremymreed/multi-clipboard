@@ -29,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.beans.property.SimpleStringProperty;
 import com.jeremyr.multiclipboard.threads.clipboardmonitor.ClipboardMonitorTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Manages our threads.  Starts and stops them.  Shuts down and cleans up.
@@ -53,9 +54,11 @@ public class ThreadManager {
    * Starts the ClipboardMonitorTask thread
    *
    * @param text The Observable Value bound to the Clipboard TextArea.
+   * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
+   * nuke clipboard feature.
    */
-  public void spawnThreads(SimpleStringProperty text) {
-    this.executorService.submit(new ClipboardMonitorTask( text ) );
+  public void spawnThreads(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
+    this.executorService.submit(new ClipboardMonitorTask( text, shouldNukeClipboard ) );
   }
 
   /**

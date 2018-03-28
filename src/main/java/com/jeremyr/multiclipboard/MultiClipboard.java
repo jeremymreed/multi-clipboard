@@ -67,7 +67,7 @@ public class MultiClipboard extends Application {
 
     this.clipboardInterfaceController = (ClipboardUserInterfaceController) fxmlLoader.getController();
 
-    this.threadManager.spawnThreads(this.clipboardInterfaceController.getText());
+    this.threadManager.spawnThreads(this.clipboardInterfaceController.getText(), this.clipboardInterfaceController.getShouldNukeClipboard());
 
     Scene scene = new Scene(root);
 

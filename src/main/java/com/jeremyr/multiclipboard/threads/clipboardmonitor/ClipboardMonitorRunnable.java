@@ -23,10 +23,14 @@
  */
 package com.jeremyr.multiclipboard.threads.clipboardmonitor;
 
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
 
 /**
  * This runnable is responsible for checking the JavaFX clipboard for changes, and
@@ -50,6 +54,11 @@ public class ClipboardMonitorRunnable implements Runnable {
    */
   private volatile SimpleStringProperty text;
 
+  /** This AtomicBoolean determines if we should be monitoring the clipboard for changes
+   * or clearing it every time the Runnable's run() method is called.
+   */
+  private AtomicBoolean shouldNukeClipboard;
+
   /** Reference to the JavaFX Clipboard. */
   private final Clipboard clipboard;
 
@@ -65,11 +74,14 @@ public class ClipboardMonitorRunnable implements Runnable {
    * Set up data members.
    *
    * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
+   * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
+   * nuke clipboard feature.
    */
-  public ClipboardMonitorRunnable(SimpleStringProperty text) {
+  public ClipboardMonitorRunnable(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.clipboard = Clipboard.getSystemClipboard();
     this.text = text;
+    this.shouldNukeClipboard = shouldNukeClipboard;
     this.oldData = "";
   }
 
@@ -82,19 +94,24 @@ public class ClipboardMonitorRunnable implements Runnable {
   @Override
   public void run() {
     try {
-      if (this.clipboard.hasString() && this.clipboard.getString() != null) {
-        String data = this.clipboard.getString();
-
-        if (data == null) {
-          this.logger.error("data is null!");
-        }
-
-        if (data != null && !this.oldData.equals(data)) {
-          this.oldData = data;
-          this.text.set(data);
-        }
-      } else {
+      if (this.shouldNukeClipboard.get()) {
+        clipboard.setContent(null);
         this.text.set("");
+      } else {
+        if (this.clipboard.hasString() && this.clipboard.getString() != null) {
+          String data = this.clipboard.getString();
+
+          if (data == null) {
+            this.logger.error("data is null!");
+          }
+
+          if (data != null && !this.oldData.equals(data)) {
+            this.oldData = data;
+            this.text.set(data);
+          }
+        } else {
+          this.text.set("");
+        }
       }
     } catch (NullPointerException nullPointerException) {
       if (this.clipboard == null) {
