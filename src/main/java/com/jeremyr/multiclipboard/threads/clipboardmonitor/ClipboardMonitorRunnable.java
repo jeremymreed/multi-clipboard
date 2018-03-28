@@ -97,6 +97,7 @@ public class ClipboardMonitorRunnable implements Runnable {
       if (this.shouldNukeClipboard.get()) {
         clipboard.setContent(null);
         this.text.set("");
+        this.oldData = null;
       } else {
         if (this.clipboard.hasString() && this.clipboard.getString() != null) {
           String data = this.clipboard.getString();
