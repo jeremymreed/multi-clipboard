@@ -38,18 +38,6 @@
   -fx-effect: dropshadow( gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
-.button {
-  -fx-text-fill: white;
-  -fx-font-family: "Arial Narrow";
-  -fx-font-width: bold;
-  -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-  -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
-}
-
-.button:hover {
-  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
-}
-
 #welcome-text {
   -fx-font-size: 32px;
   -fx-font-family: "Arial Black";
@@ -61,4 +49,28 @@
   -fx-fill: FIREBRICK;
   -fx-font-weight: bold;
   -fx-effect: dropshadow( gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
+}
+
+#button-common {
+  -fx-text-fill: white;
+  -fx-font-family: "Arial Narrow";
+  -fx-font-width: bold;
+  -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+  -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+#button-common:hover {
+  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#remove-buffer-button {
+  -fx-text-fill: white;
+  -fx-font-family: "Arial Narrow";
+  -fx-font-width: bold;
+  -fx-background-color: linear-gradient(#ff0c00, #9e0700);
+  -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+#remove-button-button:hover {
+  -fx-background-color: linear-gradient(#9e0700, #ff0c00);
 }

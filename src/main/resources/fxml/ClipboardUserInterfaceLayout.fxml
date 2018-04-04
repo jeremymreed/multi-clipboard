@@ -32,9 +32,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController">
+<BorderPane styleClass="root" stylesheets="@../css/CommonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar stylesheets="@../css/CommonStyle.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -51,7 +51,7 @@
       </MenuBar>
    </top>
    <center>
-     <GridPane alignment="center" hgap="10" styleClass="root" stylesheets="@../css/CommonStyle.css" vgap="10">
+     <GridPane alignment="center" hgap="10" styleClass="root" vgap="10">
        <padding>
          <Insets bottom="10" left="25" right="25" top="25" />
        </padding>
@@ -59,34 +59,27 @@
 
          <Text id="welcome-text" text="Clipboard Manager" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-         <Text id="statusmessage" fx:id="statusmessage" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+         <Text id="statusmessage" fx:id="statusmessage" GridPane.columnSpan="2" GridPane.rowIndex="7" />
          <TextArea fx:id="clipboard" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-         <HBox GridPane.rowIndex="6">
-           <children>
-             <Button fx:id="readButton" mnemonicParsing="false" onAction="#handleReadButtonAction" text="Read From Clipboard" />
-           </children>
-         </HBox>
-         <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6">
-           <children>
-             <Button fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" text="Write To Clipboard" />
-           </children>
-         </HBox>
-         <TextArea fx:id="buffer" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleClearClipboardButtonAction" text="Clear Clipboard" GridPane.rowIndex="3" />
+         <HBox GridPane.rowIndex="9" />
+         <HBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         <Button id="button-common" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleClearClipboardButtonAction" text="Clear Clipboard" GridPane.rowIndex="3" />
          <RadioButton id="clipboardWrapText" fx:id="clipboardWrapText" mnemonicParsing="false" onAction="#handleClipboardWrapTextRadioButtonAction" text="Wrap Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <HBox GridPane.rowIndex="7">
-           <children>
-             <Button mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
-           </children>
-         </HBox>
-         <HBox GridPane.columnIndex="1" GridPane.rowIndex="7">
-           <children>
-             <RadioButton id="bufferWrapText" fx:id="bufferWrapText" mnemonicParsing="false" onAction="#handleBufferWrapTextRadioButtonAction" text="Wrap Text" />
-           </children>
-         </HBox>
+         <HBox GridPane.rowIndex="10" />
+         <HBox GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
                <children>
                   <RadioButton id="nukeClipboardRadioButton" fx:id="nukeClipboardRadioButton" mnemonicParsing="false" onAction="#handleToggleNukeClipboardRadioButton" text="Nuke Clipboard" />
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+               <content>
+                  <ScrollPane fx:id="bufferScrollPane" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <HBox GridPane.rowIndex="6">
+               <children>
+                  <Button id="button-common" mnemonicParsing="false" text="Add Buffer" />
                </children>
             </HBox>
        </children>
@@ -101,6 +94,8 @@
          <RowConstraints />
          <RowConstraints />
             <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />
@@ -111,7 +106,4 @@
        </rowConstraints>
      </GridPane>
    </center>
-   <stylesheets>
-     <URL value="@../css/CommonStyle.css" />
-   </stylesheets>
 </BorderPane>
