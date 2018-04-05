@@ -246,4 +246,11 @@ public class ClipboardUserInterfaceController {
   protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
     this.shouldNukeClipboard.set(this.nukeClipboardRadioButton.isSelected());
   }
+
+  @FXML
+  protected void handleAddBufferButtonAction(ActionEvent event) {
+    BufferControl bufferControl = new BufferControl(this.text);
+    VBox container = (VBox) this.bufferScrollPane.getContent();
+    container.getChildren().add(bufferControl);
+  }
 }
