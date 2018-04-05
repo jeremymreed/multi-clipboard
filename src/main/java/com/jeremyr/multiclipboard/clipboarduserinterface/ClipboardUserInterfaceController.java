@@ -188,7 +188,7 @@ public class ClipboardUserInterfaceController {
     Alert aboutAlert = new Alert(AlertType.INFORMATION);
     aboutAlert.setTitle("About");
     aboutAlert.setHeaderText("About this application");
-    aboutAlert.setContentText("This application was created by Jeremy M. Reed\nVersion: 3.0.0\nThis application is licensed under the MIT License");
+    aboutAlert.setContentText("This application was created by Jeremy M. Reed\nVersion: 4.0.0\nThis application is licensed under the MIT License");
 
     aboutAlert.showAndWait();
   }
