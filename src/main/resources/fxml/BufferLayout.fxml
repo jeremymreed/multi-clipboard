@@ -17,7 +17,7 @@
       <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextArea fx:id="buffer" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" />
+      <TextArea fx:id="buffer" prefHeight="75.0" prefWidth="100.0" GridPane.columnSpan="2" />
       <HBox GridPane.rowIndex="1">
          <children>
             <Button fx:id="readClipboardButton" mnemonicParsing="false" onAction="#handleReadClipboardButtonAction" text="Read From Clipboard" />
