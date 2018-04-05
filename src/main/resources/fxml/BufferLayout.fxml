@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root hgap="10.0" stylesheets="@../css/CommonStyle.css" type="javafx.scene.layout.GridPane" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root hgap="10.0" styleClass="root" stylesheets="@../css/CommonStyle.css" type="javafx.scene.layout.GridPane" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -20,20 +20,20 @@
       <TextArea fx:id="buffer" prefHeight="75.0" prefWidth="100.0" GridPane.columnSpan="2" />
       <HBox GridPane.rowIndex="1">
          <children>
-            <Button fx:id="readClipboardButton" mnemonicParsing="false" onAction="#handleReadClipboardButtonAction" text="Read From Clipboard" />
+            <Button id="button-common" fx:id="readClipboardButton" mnemonicParsing="false" onAction="#handleReadClipboardButtonAction" text="Read From Clipboard" />
          </children>
       </HBox>
       <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="writeClipboardButton" mnemonicParsing="false" onAction="#handleWriteClipboardButtonAction" text="Write To Clipboard" />
+            <Button id="button-common" fx:id="writeClipboardButton" mnemonicParsing="false" onAction="#handleWriteClipboardButtonAction" text="Write To Clipboard" />
          </children>
       </HBox>
       <HBox GridPane.rowIndex="2">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
+            <Button id="button-common" mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
          </children>
       </HBox>
-      <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <RadioButton fx:id="bufferWrapText" mnemonicParsing="false" onAction="#handleBufferWrapTextRadioButtonAction" text="Wrap Text" />
          </children>

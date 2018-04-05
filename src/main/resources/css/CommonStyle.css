@@ -71,6 +71,6 @@
   -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 
-#remove-button-button:hover {
+#remove-buffer-button:hover {
   -fx-background-color: linear-gradient(#9e0700, #ff0c00);
 }
