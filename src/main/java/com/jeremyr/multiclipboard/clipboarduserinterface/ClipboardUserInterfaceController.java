@@ -162,8 +162,8 @@ public class ClipboardUserInterfaceController {
    * Adds a buffer to the ScrollPane. (Actually adds it to the VBox content)
    */
   private void addBuffer() {
-    BufferControl bufferControl = new BufferControl(this.nextIndex);
     VBox container = (VBox) this.bufferScrollPane.getContent();
+    BufferControl bufferControl = new BufferControl(this.nextIndex, container.getChildren());
     container.getChildren().add(bufferControl);
     this.nextIndex += 1;
   }
@@ -255,11 +255,23 @@ public class ClipboardUserInterfaceController {
     statusmessage.setText("Clipboard Wrap Text " + (this.clipboardWrapText.isSelected() ? "enabled" : "disabled"));
   }
 
+  /**
+   * This handler is invoked when the user toggles the Nuke Clipboard Radio Button.
+   * This tells the ClipboardMonitor that it should empty the JavaFX System Clipboard every 100 milliseconds.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
     this.shouldNukeClipboard.set(this.nukeClipboardRadioButton.isSelected());
   }
 
+  /**
+   * This handler is invoked when the user clicks the Add Buffer Button.
+   * Adds a BufferControl instance to the ScrollPane's VBox container.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
   @FXML
   protected void handleAddBufferButtonAction(ActionEvent event) {
     this.addBuffer();
