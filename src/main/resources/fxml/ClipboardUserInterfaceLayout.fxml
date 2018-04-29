@@ -32,7 +32,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefWidth="400.0" styleClass="root" stylesheets="@../css/CommonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController">
+<BorderPane styleClass="root" stylesheets="@../css/CommonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController">
    <top>
       <MenuBar stylesheets="@../css/CommonStyle.css" BorderPane.alignment="CENTER">
         <menus>
@@ -72,7 +72,11 @@
                   <RadioButton id="nukeClipboardRadioButton" fx:id="nukeClipboardRadioButton" mnemonicParsing="false" onAction="#handleToggleNukeClipboardRadioButton" text="Nuke Clipboard" />
                </children>
             </HBox>
-            <ScrollPane fx:id="bufferScrollPane" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+               <content>
+                  <ScrollPane fx:id="bufferScrollPane" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
             <HBox GridPane.rowIndex="6">
                <children>
                   <Button id="button-common" mnemonicParsing="false" text="Add Buffer" />
@@ -89,9 +93,9 @@
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
             <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />
