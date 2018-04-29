@@ -40,6 +40,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -61,6 +62,9 @@ public class NewUserInterfaceController {
 
   @FXML
   private TextArea bufferTextArea;
+
+  @FXML
+  private RadioButton nukeClipboardRadioButton;
 
   int nextIndex;
 
@@ -210,7 +214,7 @@ public class NewUserInterfaceController {
 
   @FXML
   protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    this.shouldNukeClipboard.set(this.nukeClipboardRadioButton.isSelected());
   }
 
   @FXML

@@ -85,7 +85,7 @@
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <RadioButton mnemonicParsing="false" onAction="#handleToggleNukeClipboardRadioButton" text="Nuke Clipboard" />
+                  <RadioButton fx:id="nukeClipboardRadioButton" mnemonicParsing="false" onAction="#handleToggleNukeClipboardRadioButton" text="Nuke Clipboard" />
                </children>
             </HBox>
             <HBox GridPane.rowIndex="5">
