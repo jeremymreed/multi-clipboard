@@ -72,7 +72,7 @@
                   <RadioButton id="nukeClipboardRadioButton" fx:id="nukeClipboardRadioButton" mnemonicParsing="false" onAction="#handleToggleNukeClipboardRadioButton" text="Nuke Clipboard" />
                </children>
             </HBox>
-            <ScrollPane fx:id="bufferScrollPane" vbarPolicy="ALWAYS" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+            <ScrollPane fx:id="bufferScrollPane" GridPane.columnSpan="2" GridPane.rowIndex="5" />
             <HBox GridPane.rowIndex="6">
                <children>
                   <Button id="button-common" mnemonicParsing="false" text="Add Buffer" />
