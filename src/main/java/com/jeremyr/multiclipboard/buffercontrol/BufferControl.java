@@ -11,8 +11,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -23,13 +21,7 @@ public class BufferControl extends GridPane {
 
   private final JavaFXClipboardWrapper clipboardWrapper;
   private volatile SimpleStringProperty clipboardText;
-
-  @FXML
-  private TextArea buffer;
-
-  @FXML
-  private RadioButton bufferTextWrapRadioButton;
-
+  
   public BufferControl(SimpleStringProperty clipboardText) {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BufferLayout.fxml"));
     fxmlLoader.setRoot(this);
@@ -48,22 +40,22 @@ public class BufferControl extends GridPane {
 
   @FXML
   protected void handleReadClipboardButtonAction(ActionEvent event) {
-    this.buffer.textProperty().set(this.clipboardWrapper.readClipboard());
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   @FXML
   protected void handleWriteClipboardButtonAction(ActionEvent event) {
-    this.clipboardWrapper.writeClipboard(this.buffer.textProperty().get());
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   @FXML
   protected void handleClearBufferButtonAction(ActionEvent event) {
-    this.buffer.textProperty().set("");
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   @FXML
   protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
-    this.buffer.wrapTextProperty().set(this.bufferTextWrapRadioButton.isSelected());
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   @FXML
