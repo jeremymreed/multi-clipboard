@@ -166,9 +166,6 @@ public class ClipboardUserInterfaceController {
     BufferControl bufferControl = new BufferControl(this.nextIndex, container.getChildren());
     container.getChildren().add(bufferControl);
     this.nextIndex += 1;
-
-    this.bufferScrollPane.layout();
-    this.bufferScrollPane.setVvalue(1.0);
   }
 
   /**
