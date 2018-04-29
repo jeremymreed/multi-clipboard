@@ -67,6 +67,14 @@ public class BufferControl extends GridPane {
     }
   }
 
+  /**
+   * Set up after the FXML is loaded.
+   * This one is for debug purposes only.
+   */
+  public void initialize() {
+    this.buffer.textProperty().set(this.index.toString());
+  }
+
   public int getIndex() {
     return this.index;
   }
