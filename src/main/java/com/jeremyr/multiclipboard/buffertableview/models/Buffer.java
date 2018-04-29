@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class Buffer implements BufferBase {
 
   private int index;
+  private final boolean isClipboard;
   private final SimpleStringProperty name;
   private final SimpleStringProperty createDate;
   private SimpleStringProperty data;
@@ -22,6 +23,7 @@ public class Buffer implements BufferBase {
 
   public Buffer(int index, String name) {
     this.index = index;
+    this.isClipboard = false;
     this.timeManager = new TimeManager();
     this.name = new SimpleStringProperty(this.index + ": " + name);
     this.createDate = new SimpleStringProperty(this.timeManager.getFormattedDate("US/Eastern"));
@@ -67,6 +69,11 @@ public class Buffer implements BufferBase {
   @Override
   public void setData(String data) {
     this.data.set(data);
+  }
+
+  @Override
+  public boolean isClipboard() {
+    return this.isClipboard;
   }
 
   @Override
