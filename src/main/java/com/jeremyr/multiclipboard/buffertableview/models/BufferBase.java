@@ -27,5 +27,5 @@ public interface BufferBase {
    * This is only relevant to the ClipboardBuffer.
    * For all other implementors, this is a nop.
    */
-  public void emptyBuffer();
+  public void empty();
 }

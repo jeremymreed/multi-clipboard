@@ -70,7 +70,7 @@ public class ClipboardBuffer implements BufferBase {
   }
 
   @Override
-  public void emptyBuffer() {
+  public void empty() {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
   
