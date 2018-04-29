@@ -45,12 +45,6 @@ public class ClipboardMonitorTask extends Task {
   /** Reference to the Application Logger object */
   private final Logger logger;
 
-  /**
-   * How long should this thread sleep after doing it's work?
-   * Think of it as the clipboard refresh rate.
-   */
-  private final long sleepTime;
-
   /** Refernce to the ClipboardMonitorRunnable to be run via Platform.runLater.*/
   private final ClipboardMonitorRunnable clipboardMonitorRunnable;
 
@@ -66,7 +60,6 @@ public class ClipboardMonitorTask extends Task {
   public ClipboardMonitorTask( SimpleStringProperty text, AtomicBoolean shouldNukeClipboard ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(text, shouldNukeClipboard);
-    this.sleepTime = 100;
   }
 
   /**
@@ -84,8 +77,9 @@ public class ClipboardMonitorTask extends Task {
       while(true) {
         Platform.runLater(this.clipboardMonitorRunnable);
 
-        Thread.sleep(this.sleepTime);
+        Thread.sleep(100);
       }
+
     } catch (InterruptedException interruptedException) {
       System.out.println("ClipboardMonitorTask: Thread was interrupted, cleaning up!");
     } catch ( Exception exception ) {
