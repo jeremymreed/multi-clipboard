@@ -31,47 +31,51 @@ public class Buffer implements BufferBase {
 
   @Override
   public int getIndex() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.index;
   }
 
   @Override
   public void setIndex(int index) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.index = index;
   }
 
   @Override
   public String getName() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.name.get();
   }
 
   @Override
   public void setName(String name) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.name.set(name);
   }
 
   @Override
   public String getCreateDate() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.createDate.get();
   }
 
   @Override
   public SimpleStringProperty getDataProperty() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.data;
   }
 
   @Override
   public String getData() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.data.get();
   }
 
   @Override
   public void setData(String data) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.data.set(data);
   }
 
   @Override
   public void empty() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    // nop.
   }
-  
+
+  @Override
+  public String toString() {
+    return "Buffer: " + this.index + ": " + this.name.get() + ", " + this.createDate.get() + ", " + this.data.get();
+  }
 }

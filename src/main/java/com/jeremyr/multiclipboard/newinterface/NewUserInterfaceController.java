@@ -24,19 +24,45 @@
  */
 package com.jeremyr.multiclipboard.newinterface;
 
+import com.jeremyr.multiclipboard.buffertableview.buttoncell.ButtonCell;
+import com.jeremyr.multiclipboard.buffertableview.eventhandlers.BufferNameEditCommitEventHandler;
+import com.jeremyr.multiclipboard.buffertableview.listeners.DataTableRowSelectionListener;
+import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
+import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
+import com.jeremyr.multiclipboard.buffertableview.models.ClipboardBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
+import javafx.util.Callback;
 
 /**
  *
  * @author jeremyr
  */
 public class NewUserInterfaceController {
+
+  @FXML
+  private TableView<BufferBase> dataTable;
+
+  @FXML
+  private TextArea bufferTextArea;
+
+  int nextIndex;
 
   /* Bound to the clipboard TextArea (Will be bound to the clipboard buffer eventually) */
   private SimpleStringProperty text;
@@ -51,6 +77,47 @@ public class NewUserInterfaceController {
 
   public void initialize() {
     this.text = new SimpleStringProperty( );
+
+    // Buffer TableView setup stuff.
+    TableColumn<BufferBase, String> nameColumn = new TableColumn<>("Buffer Name");
+    nameColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.4));
+    TableColumn<BufferBase, String> createDateColumn = new TableColumn<>("Created");
+    createDateColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.4));
+    TableColumn<BufferBase, Boolean> removeButtonColumn = new TableColumn<>("");
+    removeButtonColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.2));
+
+    this.dataTable.setEditable(true);
+    this.bufferTextArea.setEditable(false);
+
+    ObservableList<BufferBase> data = FXCollections.observableArrayList(
+            new ClipboardBuffer(0, "John"),
+            new Buffer(1, "Raymond")
+    );
+
+    this.nextIndex = 2;
+
+    nameColumn.setCellFactory(TextFieldTableCell.<BufferBase>forTableColumn());
+    nameColumn.setOnEditCommit(new BufferNameEditCommitEventHandler());
+    nameColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("name"));
+    createDateColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("createDate"));
+    removeButtonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BufferBase, Boolean>, ObservableValue<Boolean>>() {
+      @Override
+      public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<BufferBase, Boolean> cellDataFeatures) {
+        return new SimpleBooleanProperty(cellDataFeatures.getValue() != null);
+      }
+    });
+
+    removeButtonColumn.setCellFactory(new Callback<TableColumn<BufferBase, Boolean>, TableCell<BufferBase, Boolean>>() {
+      @Override
+      public TableCell<BufferBase, Boolean> call(TableColumn<BufferBase, Boolean> removeBufferButtonColumn) {
+        return new ButtonCell(dataTable);
+      }
+    });
+
+    this.dataTable.getColumns().addAll(nameColumn, createDateColumn, removeButtonColumn);
+    this.dataTable.setItems(data);
+    this.dataTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    this.dataTable.getSelectionModel().selectedItemProperty().addListener(new DataTableRowSelectionListener<>(this.bufferTextArea));
   }
 
   /**
@@ -165,5 +232,13 @@ public class NewUserInterfaceController {
   @FXML
   protected void handleToggleBufferWrapTextRadioButton(ActionEvent event) {
     throw new UnsupportedOperationException("Not Implemented yet");
+  }
+
+  @FXML
+  protected void handleAddBufferButtonAction(ActionEvent event) {
+    Buffer newPerson = new Buffer(this.nextIndex, "Hello World!");
+    this.dataTable.getItems().add(newPerson);
+
+    this.nextIndex += 1;
   }
 }
