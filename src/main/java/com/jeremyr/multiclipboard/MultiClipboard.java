@@ -25,7 +25,6 @@
 package com.jeremyr.multiclipboard;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.jeremyr.multiclipboard.clipboarduserinterface.ClipboardUserInterfaceController;
 import com.jeremyr.multiclipboard.newinterface.NewUserInterfaceController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -68,7 +67,7 @@ public class MultiClipboard extends Application {
 
     this.newUserInterfaceController = (NewUserInterfaceController) fxmlLoader.getController();
 
-    this.threadManager.spawnThreads(this.newUserInterfaceController.getText(), this.newUserInterfaceController.getShouldNukeClipboard());
+    this.threadManager.spawnThreads(this.newUserInterfaceController.getClipboardContents(), this.newUserInterfaceController.getShouldNukeClipboard());
 
     Scene scene = new Scene(root);
 

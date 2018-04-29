@@ -49,7 +49,7 @@ public class ClipboardMonitorRunnable implements Runnable {
    * IF all reads and writes to this variable occur on the JavaFX Application Thread, seems like
    * this should not be set volatile.  Need to get advice.
    */
-  private volatile SimpleStringProperty text;
+  private volatile SimpleStringProperty clipboardContents;
 
   /** This AtomicBoolean determines if we should be monitoring the clipboard for changes
    * or clearing it every time the Runnable's run() method is called.
@@ -74,7 +74,7 @@ public class ClipboardMonitorRunnable implements Runnable {
   public ClipboardMonitorRunnable(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.clipboard = Clipboard.getSystemClipboard();
-    this.text = text;
+    this.clipboardContents = text;
     this.shouldNukeClipboard = shouldNukeClipboard;
   }
 
@@ -89,7 +89,7 @@ public class ClipboardMonitorRunnable implements Runnable {
     try {
       if (this.shouldNukeClipboard.get()) {
         clipboard.setContent(null);
-        this.text.set("");
+        this.clipboardContents.set("");
       } else {
         if (this.clipboard.hasString() && this.clipboard.getString() != null) {
           String data = this.clipboard.getString();
@@ -99,12 +99,12 @@ public class ClipboardMonitorRunnable implements Runnable {
           }
 
           if (data != null) {
-            this.text.set(data);
+            this.clipboardContents.set(data);
           } else {
-            this.text.set("");
+            this.clipboardContents.set("");
           }
         } else {
-          this.text.set("");
+          this.clipboardContents.set("");
         }
       }
     } catch (NullPointerException nullPointerException) {
@@ -112,7 +112,7 @@ public class ClipboardMonitorRunnable implements Runnable {
         this.logger.error("clipboard is null", nullPointerException);
       }
 
-      if (this.text == null) {
+      if (this.clipboardContents == null) {
         this.logger.error("this.text is null!", nullPointerException);
       }
     }

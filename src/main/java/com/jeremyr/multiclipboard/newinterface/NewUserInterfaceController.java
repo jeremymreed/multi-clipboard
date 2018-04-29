@@ -64,8 +64,8 @@ public class NewUserInterfaceController {
 
   int nextIndex;
 
-  /* Bound to the clipboard TextArea (Will be bound to the clipboard buffer eventually) */
-  private SimpleStringProperty text;
+  /* Passed in to ClipboardBuffer. Updated by the ClipboardMonitor */
+  private SimpleStringProperty clipboardContents;
 
   /** This AtomicBoolean controls the Clipboard Monitor's nuke clipboard feature */
   private AtomicBoolean shouldNukeClipboard;
@@ -76,7 +76,7 @@ public class NewUserInterfaceController {
   }
 
   public void initialize() {
-    this.text = new SimpleStringProperty( );
+    this.clipboardContents = new SimpleStringProperty( );
 
     // Buffer TableView setup stuff.
     TableColumn<BufferBase, String> nameColumn = new TableColumn<>("Buffer Name");
@@ -89,9 +89,8 @@ public class NewUserInterfaceController {
     this.dataTable.setEditable(true);
     this.bufferTextArea.setEditable(false);
 
-    ObservableList<BufferBase> data = FXCollections.observableArrayList(
-            new ClipboardBuffer(0, "John"),
-            new Buffer(1, "Raymond")
+    ObservableList<BufferBase> data = FXCollections.observableArrayList(new ClipboardBuffer(0, "Clipboard", this.clipboardContents),
+            new Buffer(1, "Test Buffer")
     );
 
     this.nextIndex = 2;
@@ -117,7 +116,7 @@ public class NewUserInterfaceController {
     this.dataTable.getColumns().addAll(nameColumn, createDateColumn, removeButtonColumn);
     this.dataTable.setItems(data);
     this.dataTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    this.dataTable.getSelectionModel().selectedItemProperty().addListener(new DataTableRowSelectionListener<>(this.bufferTextArea));
+    this.dataTable.getSelectionModel().selectedItemProperty().addListener(new DataTableRowSelectionListener<>(this.bufferTextArea, this.clipboardContents));
   }
 
   /**
@@ -126,8 +125,8 @@ public class NewUserInterfaceController {
    *
    * @return  The SimpleStringProperty observable value bound to the clipboard TextArea.
    */
-  public SimpleStringProperty getText() {
-    return this.text;
+  public SimpleStringProperty getClipboardContents() {
+    return this.clipboardContents;
   }
 
   /**
@@ -236,7 +235,7 @@ public class NewUserInterfaceController {
 
   @FXML
   protected void handleAddBufferButtonAction(ActionEvent event) {
-    Buffer newPerson = new Buffer(this.nextIndex, "Hello World!");
+    Buffer newPerson = new Buffer(this.nextIndex, "Hello New Buffer!");
     this.dataTable.getItems().add(newPerson);
 
     this.nextIndex += 1;

@@ -53,12 +53,12 @@ public class ThreadManager {
   /**
    * Starts the ClipboardMonitorTask thread
    *
-   * @param text The Observable Value bound to the Clipboard TextArea.
+   * @param clipboardContents The Observable Value bound to the Clipboard TextArea.
    * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
    * nuke clipboard feature.
    */
-  public void spawnThreads(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
-    this.executorService.submit(new ClipboardMonitorTask( text, shouldNukeClipboard ) );
+  public void spawnThreads(SimpleStringProperty clipboardContents, AtomicBoolean shouldNukeClipboard) {
+    this.executorService.submit(new ClipboardMonitorTask( clipboardContents, shouldNukeClipboard ) );
   }
 
   /**

@@ -53,13 +53,13 @@ public class ClipboardMonitorTask extends Task {
    *
    * Set up data members.
    *
-   * @param text The Observable Value bound to the Clipboard TextArea.
+   * @param clipboardContents The Observable Value bound to the Clipboard TextArea.
    * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
    * nuke clipboard feature.
    */
-  public ClipboardMonitorTask( SimpleStringProperty text, AtomicBoolean shouldNukeClipboard ) {
+  public ClipboardMonitorTask( SimpleStringProperty clipboardContents, AtomicBoolean shouldNukeClipboard ) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(text, shouldNukeClipboard);
+    this.clipboardMonitorRunnable = new ClipboardMonitorRunnable(clipboardContents, shouldNukeClipboard);
   }
 
   /**

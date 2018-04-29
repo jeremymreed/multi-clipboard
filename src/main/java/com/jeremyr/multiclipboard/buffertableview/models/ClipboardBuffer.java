@@ -18,17 +18,17 @@ public class ClipboardBuffer implements BufferBase {
   private final boolean isClipboard;
   private final SimpleStringProperty name;
   private final SimpleStringProperty createDate;
-  private SimpleStringProperty data;
+  private final SimpleStringProperty clipboardContents;
   private final TimeManager timeManager;
 
-  public ClipboardBuffer(int index, String name) {
+  public ClipboardBuffer(int index, String name, SimpleStringProperty clipboardContents) {
     this.index = index;
     this.isClipboard = true;
     this.timeManager = new TimeManager();
     this.name = new SimpleStringProperty(this.index + ": " + name);
     this.createDate = new SimpleStringProperty(this.timeManager.getFormattedDate("US/Eastern"));
 
-    this.data = new SimpleStringProperty(this.index + ": ClipboardBuffer: Hello World!");
+    this.clipboardContents = clipboardContents;
   }
 
   @Override
@@ -58,17 +58,17 @@ public class ClipboardBuffer implements BufferBase {
 
   @Override
   public SimpleStringProperty getDataProperty() {
-    return this.data;
+    return this.clipboardContents;
   }
 
   @Override
   public String getData() {
-    return this.data.get();
+    return this.clipboardContents.get();
   }
 
   @Override
   public void setData(String data) {
-    this.data.set(data);
+    this.clipboardContents.set(data);
   }
 
   @Override
@@ -78,11 +78,11 @@ public class ClipboardBuffer implements BufferBase {
 
   @Override
   public void empty() {
-    this.data.set("");
+    this.clipboardContents.set("");
   }
 
   @Override
   public String toString() {
-    return "ClipboardBuffer: " + this.index + ": " + this.name.get() + ", " + this.createDate.get() + ", " + this.data.get();
+    return "ClipboardBuffer: " + this.index + ": " + this.name.get() + ", " + this.createDate.get() + ", " + this.clipboardContents.get();
   }
 }
