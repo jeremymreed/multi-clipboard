@@ -56,9 +56,6 @@ public class ClipboardUserInterfaceController {
   /** JavaFX System Clipboard Wrapper object. */
   final private JavaFXClipboardWrapper clipboardInterface;
 
-  /** The index number for the next buffer */
-  private int nextIndex;
-
   /** Displays a status message at the bottom of the stage. */
   @FXML
   private Text statusmessage;
@@ -98,7 +95,6 @@ public class ClipboardUserInterfaceController {
    * Sets non-FXML fields to default values.
    */
   public ClipboardUserInterfaceController( ) {
-    this.nextIndex = 0;
     this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
@@ -113,7 +109,6 @@ public class ClipboardUserInterfaceController {
    * Intended for injecting mocks of this dependency.
    */
   public ClipboardUserInterfaceController(JavaFXClipboardWrapper clipboardInterface) {
-    this.nextIndex = 0;
     this.clipboardInterface = clipboardInterface;
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
@@ -133,9 +128,11 @@ public class ClipboardUserInterfaceController {
     this.text.set("");
 
     // Set up first buffer.
+    BufferControl bufferControl = new BufferControl(this.text);
     VBox contents = new VBox();
+    contents.getChildren().add(bufferControl);
+
     this.bufferScrollPane.setContent(contents);
-    this.addBuffer();
   }
 
   /**
@@ -156,16 +153,6 @@ public class ClipboardUserInterfaceController {
    */
   public AtomicBoolean getShouldNukeClipboard() {
     return this.shouldNukeClipboard;
-  }
-
-  /**
-   * Adds a buffer to the ScrollPane. (Actually adds it to the VBox content)
-   */
-  private void addBuffer() {
-    BufferControl bufferControl = new BufferControl(this.nextIndex);
-    VBox container = (VBox) this.bufferScrollPane.getContent();
-    container.getChildren().add(bufferControl);
-    this.nextIndex += 1;
   }
 
   /**
@@ -262,6 +249,8 @@ public class ClipboardUserInterfaceController {
 
   @FXML
   protected void handleAddBufferButtonAction(ActionEvent event) {
-    this.addBuffer();
+    BufferControl bufferControl = new BufferControl(this.text);
+    VBox container = (VBox) this.bufferScrollPane.getContent();
+    container.getChildren().add(bufferControl);
   }
 }
