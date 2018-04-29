@@ -29,13 +29,28 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
     BufferBase oldValue = (BufferBase) oldValueProperty;
     BufferBase newValue = (BufferBase) newValueProperty;
 
-    // If oldValue is the clipboard, we don't need to write anything back.
-    // But if oldvalue is NOT the clipboard, we do need to write data back, in case it got changed.
-    if (oldValue != null && !oldValue.isClipboard()) {
-      oldValue.setData(this.bufferTextArea.textProperty().get());
+    /*
+     * If oldValue is null, we do nothing.
+     * If oldValue is not null, and is the clipboard, we unbind the buffer TextArea.
+     *    If oldValue is not null, and is not the clipboard, we write the contents of the buffer TextArea back
+     * to oldValue's data.
+     */
+    if (oldValue != null) {
+      if (oldValue.isClipboard()) {
+        this.bufferTextArea.textProperty().unbind();
+      } else {
+        oldValue.setData(this.bufferTextArea.textProperty().get());
+      }
     }
 
-    // We are assuming that when newValue == null, there is no currently selected buffer.
+    /*
+     *   If newValue is null, set buffer TextArea contents to an empty string, and
+     * make bufferTextArea non-editable.
+     *   If newValue is not null, and is the clipboard, make buffer TextArea non-editable,
+     * and bind the bufferTextArea textProperty to the clipboardContents SimpleStringProperty.
+     *   If newValue is not null, and is not the clipboard, make bufferTextArea editable, and
+     * set the bufferTextArea contents to the newValue's data.
+     */
     if (newValue == null) {
       this.bufferTextArea.textProperty().set("");
       this.bufferTextArea.setEditable(false);
@@ -45,7 +60,6 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
         this.bufferTextArea.textProperty().bind(this.clipboardContents);
       } else {
         this.bufferTextArea.setEditable(true);
-        this.bufferTextArea.textProperty().unbind();
         this.bufferTextArea.textProperty().set(newValue.getData());
       }
     }
