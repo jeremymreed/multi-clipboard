@@ -24,7 +24,6 @@
  */
 package com.jeremyr.multiclipboard.clipboarduserinterface;
 
-import com.jeremyr.multiclipboard.buffercontrol.BufferControl;
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
@@ -34,10 +33,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -60,9 +57,15 @@ public class ClipboardUserInterfaceController {
   @FXML
   private Text statusmessage;
 
-  /** Scroll Pane container holding buffer controls. */
+  /** This TextArea is the buffer.  This is a storage area or scratch editing area */
   @FXML
-  private ScrollPane bufferScrollPane;
+  private TextArea buffer;
+
+  /**
+   * This RadioButton toggles the bufferWrapText's wrap text property.
+   */
+  @FXML
+  private RadioButton bufferWrapText;
 
   /**
    * This TextArea is the clipboard.  This is where the clipboard's current contents are shown to the user.
@@ -126,13 +129,6 @@ public class ClipboardUserInterfaceController {
     this.text = new SimpleStringProperty( );
     this.clipboard.textProperty().bind(this.text);
     this.text.set("");
-
-    // Set up first buffer.
-    BufferControl bufferControl = new BufferControl(this.text);
-    VBox contents = new VBox();
-    contents.getChildren().add(bufferControl);
-
-    this.bufferScrollPane.setContent(contents);
   }
 
   /**
@@ -245,5 +241,55 @@ public class ClipboardUserInterfaceController {
   @FXML
   protected void handleToggleNukeClipboardRadioButton(ActionEvent event) {
     this.shouldNukeClipboard.set(this.nukeClipboardRadioButton.isSelected());
+  }
+
+  /**
+   * This handler is invoked when the user clicks on the "Write To Clipboard"
+   * Button.
+   *
+   *
+   * @param event The ActionEvent object describing the event.
+   */
+  @FXML
+  protected void handleWriteButtonAction(ActionEvent event) {
+    this.clipboardInterface.writeClipboard(this.buffer.getText());
+    statusmessage.setText("Wrote buffer contents to the clipboard");
+  }
+
+  /**
+   * This handler is invoked when the user clicks on the "Read From Clipboard"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
+  @FXML
+  protected void handleReadButtonAction(ActionEvent event) {
+    String data = this.clipboardInterface.readClipboard();
+    this.buffer.setText(data);
+    statusmessage.setText("Copied clipboard contents to the buffer");
+  }
+
+  /**
+   * This handler is invoked when the user clicks on the "Clear Buffer"
+   * Button.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
+  @FXML
+  protected void handleClearBufferButtonAction(ActionEvent event) {
+    this.buffer.setText("");
+    statusmessage.setText("Cleared the buffer");
+  }
+
+  /**
+   * This handler is invoked when the user clicks on the "Wrap Text"
+   * Radio Button with the "buffer-wrap-text-radio-button" id.
+   *
+   * @param event The ActionEvent object describing the event.
+   */
+  @FXML
+  protected void handleBufferWrapTextRadioButtonAction(ActionEvent event) {
+    this.buffer.setWrapText(this.bufferWrapText.isSelected());
+    statusmessage.setText("Buffer Wrap Text " + (this.bufferWrapText.isSelected() ? "enabled" : "disabled"));
   }
 }
