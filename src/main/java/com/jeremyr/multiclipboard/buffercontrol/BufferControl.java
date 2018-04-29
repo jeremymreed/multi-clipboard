@@ -7,11 +7,9 @@ package com.jeremyr.multiclipboard.buffercontrol;
 
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.io.IOException;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -28,12 +26,6 @@ public class BufferControl extends GridPane {
   /** Index number of this buffer */
   private Integer index;
 
-  /** Reference to the ObservableList<Node> holding BufferControl instances.
-   * Adding/Removing BufferControls from this list removes them from the ScrollPane.
-   * Technically, this ObservableList<Node> is owned by the VBox owned by the ScrollPane.
-   */
-  private ObservableList<Node> controlCollection;
-
   /** Reference to the buffer TextArea */
   @FXML
   private TextArea buffer;
@@ -48,11 +40,9 @@ public class BufferControl extends GridPane {
    * that layout.
    *
    * @param index The index number for this buffer instance.
-   * @param controlCollection The ObservableList<Node> holding BufferControl instances.
    */
-  public BufferControl(int index, ObservableList<Node> controlCollection) {
+  public BufferControl(int index) {
     this.index = index;
-    this.controlCollection = controlCollection;
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BufferLayout.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -73,10 +63,6 @@ public class BufferControl extends GridPane {
    */
   public void initialize() {
     this.buffer.textProperty().set(this.index.toString());
-  }
-
-  public int getIndex() {
-    return this.index;
   }
 
   /**
@@ -131,20 +117,6 @@ public class BufferControl extends GridPane {
    */
   @FXML
   protected void handleRemoveBufferButtonAction(ActionEvent event) {
-    // Only remove buffers if the ObservableList<Node> contains more than one BufferControl.
-    if (this.controlCollection.size() > 1) {
-      // Find ourself in the collection, in a linear fashion, with an early exit.
-      for (int i = 0; i < this.controlCollection.size(); i++) {
-        BufferControl item = (BufferControl) this.controlCollection.get(i);
-        if (item.getIndex() == this.index) {
-          // We've found ourselves!
-          this.controlCollection.remove(i);
-          return;
-        }
-      }
-
-      System.out.println("We didn't find ourself.  This is depressing, and should never happen.");
-      throw new IllegalStateException("Couldn't find the custom control in the control collection!  Something went wrong!");
-    }
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 }
