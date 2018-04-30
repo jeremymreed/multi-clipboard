@@ -59,10 +59,10 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints />
+          <RowConstraints maxHeight="74.0" prefHeight="74.0" />
             <RowConstraints maxHeight="125.0" minHeight="125.0" prefHeight="125.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="150.0" />
-          <RowConstraints maxHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="200.0" prefHeight="200.0" />
           <RowConstraints />
             <RowConstraints />
             <RowConstraints maxHeight="125.0" prefHeight="125.0" vgrow="SOMETIMES" />
@@ -73,12 +73,12 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" prefHeight="75.0" GridPane.columnSpan="2">
+            <HBox alignment="CENTER" prefHeight="74.0" GridPane.columnSpan="2">
                <children>
                   <Text id="welcome-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Clipboard Manager" />
                </children>
             </HBox>
-            <TableView fx:id="dataTable" prefHeight="150.0" prefWidth="550.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="550.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <TextArea fx:id="bufferTextArea" prefHeight="125.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <HBox GridPane.rowIndex="4">
                <children>
