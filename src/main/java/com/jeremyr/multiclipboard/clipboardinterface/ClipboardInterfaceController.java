@@ -50,6 +50,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
@@ -138,6 +139,7 @@ public class ClipboardInterfaceController {
     ObservableList<BufferBase> data = FXCollections.observableArrayList();
 
     nameColumn.setOnEditCommit(new BufferNameEditCommitEventHandler());
+    nameColumn.setCellFactory(TextFieldTableCell.<BufferBase>forTableColumn());
     nameColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("name"));
     createDateColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("createDate"));
     removeButtonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BufferBase, Boolean>, ObservableValue<Boolean>>() {
