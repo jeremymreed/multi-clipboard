@@ -41,7 +41,6 @@ public class ButtonCell extends TableCell<BufferBase, Boolean> {
       BufferBase buffer = bufferList.get(getIndex());
       this.cellButton.setId("button-warning");
       this.cellButton.setOnAction(new RemoveButtonEventHandler(buffer.getIndex(), bufferList));
-      this.cellButton.disableProperty().set(buffer.isClipboard());
     }
   }
 }

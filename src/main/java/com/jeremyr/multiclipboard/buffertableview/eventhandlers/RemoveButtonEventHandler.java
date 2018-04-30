@@ -28,10 +28,7 @@ public class RemoveButtonEventHandler implements EventHandler<ActionEvent> {
   public void handle(ActionEvent event) {
     for (int i = 0; i < this.bufferList.size(); i += 1) {
       if (this.bufferList.get(i).getIndex() == this.index) {
-        if (!this.bufferList.get(i).isClipboard()) {
-          this.bufferList.remove(i);
-        }
-
+        this.bufferList.remove(i);
         return;
       }
     }

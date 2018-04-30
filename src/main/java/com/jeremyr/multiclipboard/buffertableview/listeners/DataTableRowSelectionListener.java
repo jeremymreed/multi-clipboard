@@ -36,11 +36,7 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
      * to oldValue's data.
      */
     if (oldValue != null) {
-      if (oldValue.isClipboard()) {
-        this.bufferTextArea.textProperty().unbind();
-      } else {
-        oldValue.setData(this.bufferTextArea.textProperty().get());
-      }
+      oldValue.setData(this.bufferTextArea.textProperty().get());
     }
 
     /*
@@ -55,13 +51,8 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
       this.bufferTextArea.textProperty().set("");
       this.bufferTextArea.setEditable(false);
     } else {
-      if (newValue.isClipboard()) {
-        this.bufferTextArea.setEditable(false);
-        this.bufferTextArea.textProperty().bind(this.clipboardContents);
-      } else {
-        this.bufferTextArea.setEditable(true);
-        this.bufferTextArea.textProperty().set(newValue.getData());
-      }
+      this.bufferTextArea.setEditable(true);
+      this.bufferTextArea.textProperty().set(newValue.getData());
     }
   }
 }

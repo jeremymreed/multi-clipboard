@@ -72,11 +72,6 @@ public class Buffer implements BufferBase {
   }
 
   @Override
-  public boolean isClipboard() {
-    return this.isClipboard;
-  }
-
-  @Override
   public void empty() {
     // nop.
   }

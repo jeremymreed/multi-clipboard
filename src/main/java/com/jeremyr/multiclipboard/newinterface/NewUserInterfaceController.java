@@ -29,7 +29,6 @@ import com.jeremyr.multiclipboard.buffertableview.eventhandlers.BufferNameEditCo
 import com.jeremyr.multiclipboard.buffertableview.listeners.DataTableRowSelectionListener;
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
-import com.jeremyr.multiclipboard.buffertableview.models.ClipboardBuffer;
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
@@ -51,7 +50,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
@@ -105,7 +103,7 @@ public class NewUserInterfaceController {
     this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
-    this.nextIndex = 1;
+    this.nextIndex = 0;
   }
 
   public void initialize() {
@@ -138,9 +136,7 @@ public class NewUserInterfaceController {
     this.clearBufferButton.disableProperty().bind(bufferTextAreaNotEditable);
 
     ObservableList<BufferBase> data = FXCollections.observableArrayList();
-    data.add(new ClipboardBuffer(0, "Clipboard", this.clipboardContents));
 
-    nameColumn.setCellFactory(TextFieldTableCell.<BufferBase>forTableColumn());
     nameColumn.setOnEditCommit(new BufferNameEditCommitEventHandler());
     nameColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("name"));
     createDateColumn.setCellValueFactory(new PropertyValueFactory<BufferBase, String>("createDate"));

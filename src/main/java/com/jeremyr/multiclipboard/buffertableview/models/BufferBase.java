@@ -22,8 +22,6 @@ public interface BufferBase {
   public String getData();
   public void setData(String data);
 
-  public boolean isClipboard();
-
   /**
    * Empties the buffer.
    * This is only relevant to the ClipboardBuffer.
