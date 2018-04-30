@@ -30,8 +30,11 @@ import com.jeremyr.multiclipboard.buffertableview.listeners.DataTableRowSelectio
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.buffertableview.models.ClipboardBuffer;
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -40,6 +43,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
@@ -58,15 +62,38 @@ import javafx.util.Callback;
 public class NewUserInterfaceController {
 
   @FXML
+  private TextArea clipboardTextArea;
+
+  @FXML
   private TableView<BufferBase> dataTable;
 
   @FXML
   private TextArea bufferTextArea;
 
   @FXML
+  private Button readFromClipboardButton;
+
+  @FXML
+  private Button writeToClipboardButton;
+
+  @FXML
+  private Button clearBufferButton;
+
+  @FXML
   private RadioButton nukeClipboardRadioButton;
 
+  @FXML
+  private RadioButton bufferTextAreaWrapTextRadioButton;
+
+  @FXML
+  private RadioButton clipboardTextAreaWrapTextRadioButton;
+
   int nextIndex;
+
+  /**
+   * JavaFX System Clipboard Wrapper object.
+   */
+  final private JavaFXClipboardWrapper clipboardInterface;
 
   /* Passed in to ClipboardBuffer. Updated by the ClipboardMonitor */
   private SimpleStringProperty clipboardContents;
@@ -75,12 +102,21 @@ public class NewUserInterfaceController {
   private AtomicBoolean shouldNukeClipboard;
 
   public NewUserInterfaceController() {
+    this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
   }
 
   public void initialize() {
     this.clipboardContents = new SimpleStringProperty( );
+    this.clipboardTextArea.textProperty().bind(this.clipboardContents);
+
+    // Want TextAreas wrap text set to true by default.
+    this.clipboardTextArea.wrapTextProperty().set(true);
+    this.bufferTextArea.wrapTextProperty().set(true);
+
+    this.clipboardTextAreaWrapTextRadioButton.selectedProperty().set(true);
+    this.bufferTextAreaWrapTextRadioButton.selectedProperty().set(true);
 
     // Buffer TableView setup stuff.
     TableColumn<BufferBase, String> nameColumn = new TableColumn<>("Buffer Name");
@@ -92,6 +128,13 @@ public class NewUserInterfaceController {
 
     this.dataTable.setEditable(true);
     this.bufferTextArea.setEditable(false);
+
+    // Deactivate bufferTextArea controls if bufferTextArea is not editable.
+    BooleanBinding bufferTextAreaNotEditable = Bindings.not(this.bufferTextArea.editableProperty());
+
+    this.readFromClipboardButton.disableProperty().bind(bufferTextAreaNotEditable);
+    this.writeToClipboardButton.disableProperty().bind(bufferTextAreaNotEditable);
+    this.clearBufferButton.disableProperty().bind(bufferTextAreaNotEditable);
 
     ObservableList<BufferBase> data = FXCollections.observableArrayList(new ClipboardBuffer(0, "Clipboard", this.clipboardContents),
             new Buffer(1, "Test Buffer")
@@ -209,7 +252,7 @@ public class NewUserInterfaceController {
 
   @FXML
   protected void handleClearClipboardButtonAction(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    this.clipboardInterface.writeClipboard("");
   }
 
   @FXML
@@ -219,22 +262,34 @@ public class NewUserInterfaceController {
 
   @FXML
   protected void handleReadFromClipboardButtonAction(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    String data = this.clipboardInterface.readClipboard();
+    if (this.bufferTextArea.isEditable()) {
+      this.bufferTextArea.setText(data);
+    }
   }
 
   @FXML
   protected void handleWriteToClipboardButtonAction(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    if (this.bufferTextArea.isEditable()) {
+      this.clipboardInterface.writeClipboard(this.bufferTextArea.getText());
+    }
   }
 
   @FXML
   protected void handleClearBufferButtonAction(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    if (this.bufferTextArea.isEditable()) {
+      this.bufferTextArea.setText("");
+    }
   }
 
   @FXML
   protected void handleToggleBufferWrapTextRadioButton(ActionEvent event) {
-    throw new UnsupportedOperationException("Not Implemented yet");
+    this.bufferTextArea.setWrapText(this.bufferTextAreaWrapTextRadioButton.isSelected());
+  }
+
+  @FXML
+  protected void handleToggleClipboardWrapTextRadioButton(ActionEvent event) {
+    this.clipboardTextArea.setWrapText(this.clipboardTextAreaWrapTextRadioButton.isSelected());
   }
 
   @FXML
