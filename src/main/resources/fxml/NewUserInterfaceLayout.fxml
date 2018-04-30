@@ -62,7 +62,7 @@
           <RowConstraints />
             <RowConstraints maxHeight="125.0" minHeight="125.0" prefHeight="125.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="150.0" />
-          <RowConstraints maxHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
           <RowConstraints />
             <RowConstraints />
             <RowConstraints maxHeight="125.0" prefHeight="125.0" vgrow="SOMETIMES" />
@@ -82,7 +82,7 @@
             <TextArea fx:id="bufferTextArea" prefHeight="125.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <HBox GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleClearClipboardButtonAction" text="Clear Clipboard" />
+                  <Button id="button-common" mnemonicParsing="false" onAction="#handleClearClipboardButtonAction" text="Clear Clipboard" />
                </children>
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -92,17 +92,17 @@
             </HBox>
             <HBox GridPane.rowIndex="7">
                <children>
-                  <Button fx:id="readFromClipboardButton" mnemonicParsing="false" onAction="#handleReadFromClipboardButtonAction" text="Read From Clipboard" />
+                  <Button id="button-common" fx:id="readFromClipboardButton" mnemonicParsing="false" onAction="#handleReadFromClipboardButtonAction" text="Read From Clipboard" />
                </children>
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Button fx:id="writeToClipboardButton" mnemonicParsing="false" onAction="#handleWriteToClipboardButtonAction" text="Write To Clipboard" />
+                  <Button id="button-common" fx:id="writeToClipboardButton" mnemonicParsing="false" onAction="#handleWriteToClipboardButtonAction" text="Write To Clipboard" />
                </children>
             </HBox>
             <HBox GridPane.rowIndex="8">
                <children>
-                  <Button fx:id="clearBufferButton" mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
+                  <Button id="button-common" fx:id="clearBufferButton" mnemonicParsing="false" onAction="#handleClearBufferButtonAction" text="Clear Buffer" />
                </children>
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -112,7 +112,7 @@
             </HBox>
             <HBox GridPane.rowIndex="5">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleAddBufferButtonAction" text="Add Buffer" />
+                  <Button id="button-common" mnemonicParsing="false" onAction="#handleAddBufferButtonAction" text="Add Buffer" />
                </children>
             </HBox>
             <TextArea fx:id="clipboardTextArea" prefHeight="125.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
