@@ -26,7 +26,7 @@ public class Buffer implements BufferBase {
     this.isClipboard = false;
     this.timeManager = new TimeManager();
     this.name = new SimpleStringProperty(this.index + ": " + name);
-    this.createDate = new SimpleStringProperty(this.timeManager.getFormattedDate("US/Eastern"));
+    this.createDate = new SimpleStringProperty(this.timeManager.getFormattedDateForLocalZone());
 
     this.data = new SimpleStringProperty("");
   }

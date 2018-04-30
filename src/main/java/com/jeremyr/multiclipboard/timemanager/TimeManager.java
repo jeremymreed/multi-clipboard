@@ -8,15 +8,23 @@ package com.jeremyr.multiclipboard.timemanager;
 import java.time.DateTimeException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 /**
  *
  * @author jeremyr
  */
 public class TimeManager {
-  public String getFormattedDate(String zone) {
+
+  /**
+   * Get current time in a formatted string, for the given time zone.
+   *
+   * @param timeZone The desired time zone.
+   * @return Formatted String with the current time, in the given time zone.
+   */
+  public String getFormattedDateWithZone(String timeZone) {
     try {
-      ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of(zone));
+      ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of(timeZone));
       return this.formatDigit(dateTime.getDayOfMonth()) + "/" + this.formatDigit(dateTime.getMonthValue()) + "/" + this.formatDigit(dateTime.getYear())
               + "  " + this.formatDigit(dateTime.getHour()) + ":" + this.formatDigit(dateTime.getMinute()) + ":" + this.formatDigit(dateTime.getSecond());
 
@@ -24,6 +32,15 @@ public class TimeManager {
       System.out.println("Caught DateTimeException: " + dateTimeException);
       return "---";
     }
+  }
+
+  /**
+   * Get current time in a formatted string, for the default time zone.
+   *
+   * @return Formatted String with the current time, in the default time zone.
+   */
+  public String getFormattedDateForLocalZone() {
+    return this.getFormattedDateWithZone(TimeZone.getDefault().toZoneId().toString());
   }
 
   /**
