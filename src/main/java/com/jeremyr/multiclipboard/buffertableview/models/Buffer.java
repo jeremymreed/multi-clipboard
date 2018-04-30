@@ -28,7 +28,7 @@ public class Buffer implements BufferBase {
     this.name = new SimpleStringProperty(this.index + ": " + name);
     this.createDate = new SimpleStringProperty(this.timeManager.getFormattedDate("US/Eastern"));
 
-    this.data = new SimpleStringProperty(this.index + ": Buffer: Hello World!");
+    this.data = new SimpleStringProperty("");
   }
 
   @Override

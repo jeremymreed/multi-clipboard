@@ -99,12 +99,13 @@ public class NewUserInterfaceController {
   private SimpleStringProperty clipboardContents;
 
   /** This AtomicBoolean controls the Clipboard Monitor's nuke clipboard feature */
-  private AtomicBoolean shouldNukeClipboard;
+  private final AtomicBoolean shouldNukeClipboard;
 
   public NewUserInterfaceController() {
     this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
+    this.nextIndex = 1;
   }
 
   public void initialize() {
@@ -136,11 +137,8 @@ public class NewUserInterfaceController {
     this.writeToClipboardButton.disableProperty().bind(bufferTextAreaNotEditable);
     this.clearBufferButton.disableProperty().bind(bufferTextAreaNotEditable);
 
-    ObservableList<BufferBase> data = FXCollections.observableArrayList(new ClipboardBuffer(0, "Clipboard", this.clipboardContents),
-            new Buffer(1, "Test Buffer")
-    );
-
-    this.nextIndex = 2;
+    ObservableList<BufferBase> data = FXCollections.observableArrayList();
+    data.add(new ClipboardBuffer(0, "Clipboard", this.clipboardContents));
 
     nameColumn.setCellFactory(TextFieldTableCell.<BufferBase>forTableColumn());
     nameColumn.setOnEditCommit(new BufferNameEditCommitEventHandler());
@@ -294,7 +292,7 @@ public class NewUserInterfaceController {
 
   @FXML
   protected void handleAddBufferButtonAction(ActionEvent event) {
-    Buffer newPerson = new Buffer(this.nextIndex, "Hello New Buffer!");
+    Buffer newPerson = new Buffer(this.nextIndex, "New Buffer");
     this.dataTable.getItems().add(newPerson);
 
     this.nextIndex += 1;
