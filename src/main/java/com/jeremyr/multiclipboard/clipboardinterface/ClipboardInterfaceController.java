@@ -119,9 +119,9 @@ public class ClipboardInterfaceController {
 
     // Buffer TableView setup stuff.
     TableColumn<BufferBase, String> nameColumn = new TableColumn<>("Buffer Name");
-    nameColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.4));
+    nameColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.3));
     TableColumn<BufferBase, String> createDateColumn = new TableColumn<>("Created");
-    createDateColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.4));
+    createDateColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.5));
     TableColumn<BufferBase, Boolean> removeButtonColumn = new TableColumn<>("");
     removeButtonColumn.prefWidthProperty().bind(this.dataTable.widthProperty().multiply(0.2));
 

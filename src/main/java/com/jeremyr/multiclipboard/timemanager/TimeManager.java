@@ -26,7 +26,8 @@ public class TimeManager {
     try {
       ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of(timeZone));
       return this.formatDigit(dateTime.getDayOfMonth()) + "/" + this.formatDigit(dateTime.getMonthValue()) + "/" + this.formatDigit(dateTime.getYear())
-              + "  " + this.formatDigit(dateTime.getHour()) + ":" + this.formatDigit(dateTime.getMinute()) + ":" + this.formatDigit(dateTime.getSecond());
+              + "  " + this.formatDigit(dateTime.getHour()) + ":" + this.formatDigit(dateTime.getMinute()) + ":" + this.formatDigit(dateTime.getSecond())
+              + " [" + dateTime.getZone().toString() + "]";
 
     } catch (DateTimeException dateTimeException) {
       System.out.println("Caught DateTimeException: " + dateTimeException);
