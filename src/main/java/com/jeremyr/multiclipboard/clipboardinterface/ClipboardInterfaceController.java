@@ -22,7 +22,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.jeremyr.multiclipboard.newinterface;
+package com.jeremyr.multiclipboard.clipboardinterface;
 
 import com.jeremyr.multiclipboard.buffertableview.buttoncell.ButtonCell;
 import com.jeremyr.multiclipboard.buffertableview.eventhandlers.BufferNameEditCommitEventHandler;
@@ -57,7 +57,7 @@ import javafx.util.Callback;
  *
  * @author jeremyr
  */
-public class NewUserInterfaceController {
+public class ClipboardInterfaceController {
 
   @FXML
   private TextArea clipboardTextArea;
@@ -99,7 +99,7 @@ public class NewUserInterfaceController {
   /** This AtomicBoolean controls the Clipboard Monitor's nuke clipboard feature */
   private final AtomicBoolean shouldNukeClipboard;
 
-  public NewUserInterfaceController() {
+  public ClipboardInterfaceController() {
     this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
