@@ -36,7 +36,7 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
      * to oldValue's data.
      */
     if (oldValue != null) {
-      oldValue.setData(this.bufferTextArea.textProperty().get());
+      this.bufferTextArea.textProperty().unbindBidirectional(oldValue.getDataProperty());
     }
 
     /*
@@ -52,7 +52,7 @@ public class DataTableRowSelectionListener<T extends BufferBase> implements Chan
       this.bufferTextArea.setEditable(false);
     } else {
       this.bufferTextArea.setEditable(true);
-      this.bufferTextArea.textProperty().set(newValue.getData());
+      this.bufferTextArea.textProperty().bindBidirectional(newValue.getDataProperty());
     }
   }
 }
