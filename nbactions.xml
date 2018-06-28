@@ -22,5 +22,23 @@
                 <runfx.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -Dglass.disableGrab=true -jar "${project.build.directory}/${project.build.finalName}.jar"</runfx.args>
                 <jpda.listen>true</jpda.listen>
             </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-generate-sources</actionName>
+            <displayName>generate-sources</displayName>
+            <goals>
+                <goal>generate-sources</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>rebuild</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>clean</goal>
+                <goal>generate-sources</goal>
+                <goal>install</goal>
+            </goals>
         </action>        
     </actions>
