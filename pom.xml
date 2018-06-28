@@ -26,6 +26,7 @@
     </scm>
 
     <build>
+      <finalName>${project.artifactId}-v${project.version}-${buildNumber}</finalName>
       <pluginManagement>
         <plugins>
           <plugin>
