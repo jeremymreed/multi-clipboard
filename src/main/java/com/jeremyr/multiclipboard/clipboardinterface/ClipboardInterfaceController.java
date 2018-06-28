@@ -30,6 +30,7 @@ import com.jeremyr.multiclipboard.buffertableview.listeners.DataTableRowSelectio
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
+import com.jeremyr.multiclipboard.Version;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -202,7 +203,7 @@ public class ClipboardInterfaceController {
     Alert aboutAlert = new Alert(Alert.AlertType.INFORMATION);
     aboutAlert.setTitle("About");
     aboutAlert.setHeaderText("About this application");
-    aboutAlert.setContentText("This application was created by Jeremy M. Reed\nVersion: 5.1.2\nThis application is licensed under the MIT License");
+    aboutAlert.setContentText("This application was created by Jeremy M. Reed\nVersion: " + Version.getVersion() + "\nThis application is licensed under the MIT License");
 
     aboutAlert.showAndWait();
   }
