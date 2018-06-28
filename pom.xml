@@ -19,8 +19,52 @@
         <name>Your Organisation</name>
     </organization>
 
+    <scm>
+      <connection>scm:git:git@gitlab.com:jeremymreed/multi-clipboard.git</connection>
+      <url>https://gitlab.com/jeremymreed/multi-clipboard/</url>
+      <tag>${project.version}</tag>
+    </scm>
+
     <build>
+      <pluginManagement>
         <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>templating-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+              <execution>
+                <id>generate-version-class</id>
+                <goals>
+                  <goal>filter-sources</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>buildnumber-maven-plugin</artifactId>
+            <version>1.4</version>
+            <configuration>
+              <revisionOnScmFailure>UNKNOWN</revisionOnScmFailure>
+              <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>create</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>templating-maven-plugin</artifactId>
+            <version>1.0.0</version>
+          </plugin>
           <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
