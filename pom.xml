@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mainClass>com.jeremyr.multiclipboard.MultiClipboard</mainClass>
+        <type>alpha</type>
     </properties>
 
     <organization>
@@ -26,7 +27,7 @@
     </scm>
 
     <build>
-      <finalName>${project.artifactId}-v${project.version}-${buildNumber}</finalName>
+      <finalName>${project.artifactId}-v${project.version}-${type}-${buildNumber}</finalName>
       <pluginManagement>
         <plugins>
           <plugin>
