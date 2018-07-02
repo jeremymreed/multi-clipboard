@@ -2,7 +2,11 @@
 # Gitlab CI config
 # This is a Maven project, using JUnit and Mockito.
 
-image: tgalopin:maven-javafx
+image: maven:3.5.4-jdk-8
+
+before_script:
+  apt-get update
+  apt-get install -y openjfx
 
 build:
   script:
