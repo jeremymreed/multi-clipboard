@@ -5,13 +5,9 @@
 image: maven:3.5.4-jdk-8
 
 before_script:
-  apt-get update
-  apt-get install -y openjfx
-
-build:
-  script:
-    mvn -B clean generate-sources compile
+  - apt-get update
+  - apt-get install -y openjfx
 
 test:
   script:
-    mvn -B test
+    - mvn -B clean generate-sources compile test
