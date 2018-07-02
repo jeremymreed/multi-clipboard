@@ -2,8 +2,9 @@ Clipboard Manager
 ======================================
 
 ### STATUS:
-* master:  TODO: CI Integration.
-* develop:  TODO: CI Integration.
+* master: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/master/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/master)
+* develop: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/develop)
+* gitlab-ci-config: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/feature/gitlab-ci-config)
 
 ======================================
 ### Table of Contents
