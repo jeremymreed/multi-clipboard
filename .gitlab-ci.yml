@@ -2,7 +2,7 @@
 # Gitlab CI config
 # This is a Maven project, using JUnit and Mockito.
 
-image: maven:maven-javafx
+image: tgalopin:maven-javafx
 
 build:
   script:
