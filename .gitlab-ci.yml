@@ -2,12 +2,12 @@
 # Gitlab CI config
 # This is a Maven project, using JUnit and Mockito.
 
-image: maven:3.5.4-jdk-8
+image: maven:maven-javafx
 
 build:
   script:
-    mvn clean generate-sources build
+    mvn -B clean generate-sources compile
 
 test:
   script:
-    mvn test
+    mvn -B test
