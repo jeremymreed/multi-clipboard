@@ -1,5 +1,13 @@
 package com.jeremyr.multiclipboard;
 
+/**
+ * @author jeremyr
+ *
+ * This class is a template to be processed by the maven templating and build number
+ * plugins.
+ *
+ * Provides an interface to values produced by the above plugins.
+ */
 public final class Version {
 
     private static final String VERSION = "${project.version}";
