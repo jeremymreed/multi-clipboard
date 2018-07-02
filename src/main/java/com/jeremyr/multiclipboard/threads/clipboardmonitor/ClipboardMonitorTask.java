@@ -29,13 +29,12 @@ import org.slf4j.LoggerFactory;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
-import javafx.scene.input.Clipboard;
 
 /**
  * This Task is responsible for calling Platform.runLater with our Runnable
  * every 100 milliseconds.  TODO: Perhaps read this from a config file.
  *
- * We have this in a separate Task, because we really don't want to call
+ * We have this on a separate thread (Runnable), because we really don't want to call
  * Thread.sleep on the JavaFX Application Thread.
  *
  * @author jeremyr
@@ -45,7 +44,7 @@ public class ClipboardMonitorTask extends Task {
   /** Reference to the Application Logger object */
   private final Logger logger;
 
-  /** Refernce to the ClipboardMonitorRunnable to be run via Platform.runLater.*/
+  /** Reference to the ClipboardMonitorRunnable to be run via Platform.runLater.*/
   private final ClipboardMonitorRunnable clipboardMonitorRunnable;
 
   /**

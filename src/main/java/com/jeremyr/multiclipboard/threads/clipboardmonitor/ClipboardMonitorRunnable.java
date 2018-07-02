@@ -61,10 +61,6 @@ public class ClipboardMonitorRunnable implements Runnable {
 
   /**
    * Controller with dependencies passed in.
-   * We are passing in the JavaFX System Clipboard since that can be done outside
-   * of the JavaFX Application Thread.  Actually using it requires us to be on the
-   * JavaFX Application Thread.
-   *
    * Set up data members.
    *
    * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
