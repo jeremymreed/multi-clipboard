@@ -8,7 +8,7 @@ before_script:
   - apt-get update
   - apt-get install -y openjfx
   - apt-get install -y xvfb
-  - xvfb :99 &>/dev/null &
+  - Xvfb :99 &>/dev/null &
   - export DISPLAY=:99
 
 test:
