@@ -4,7 +4,6 @@ Clipboard Manager
 ### STATUS:
 * master: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/master/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/master)
 * develop: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/develop)
-* bugfix/unable-to-open-display-exception-while-ci-testing: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/bugfix/unable-to-open-display-exception-while-ci-testing/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/bugfix/unable-to-open-display-exception-while-ci-testing)
 
 ======================================
 ### Table of Contents
