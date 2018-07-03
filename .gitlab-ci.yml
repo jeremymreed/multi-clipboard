@@ -4,9 +4,14 @@
 
 image: maven:3.5.4-jdk-8
 
+
+# NOTE: We are intentionally breaking CI until we are ready to test a fix
+# for the exception we are getting.  See task "Tests throwing Exception
+# while running" in Asana for more details.
+#
 before_script:
-  - apt-get update
-  - apt-get install -y openjfx
+  apt-get update
+  apt-get install -y openjfx
 
 test:
   script:

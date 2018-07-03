@@ -35,6 +35,11 @@ import javafx.scene.input.DataFormat;
  */
 public class JavaFXClipboardWrapper {
 
+  private Clipboard clipboard;
+
+  public JavaFXClipboardWrapper() {
+    this.clipboard = Clipboard.getSystemClipboard();
+  }
   /**
    * If the JavaFX System Clipboard contains a string, return that string,
    * otherwise return an empty string.
@@ -42,10 +47,8 @@ public class JavaFXClipboardWrapper {
    * @return A String with either the contents of the JavaFX System Clipboard or an empty string.
    */
   public String readClipboard() {
-    Clipboard clipboard = Clipboard.getSystemClipboard();
-
-    if (clipboard.hasString()) {
-      return clipboard.getString();
+    if (this.clipboard.hasString()) {
+      return this.clipboard.getString();
     } else {
       return "";
     }
@@ -57,20 +60,17 @@ public class JavaFXClipboardWrapper {
    * @param data The String data to write to the clipboard.
    */
   public void writeClipboard(String data) {
-    Clipboard clipboard = Clipboard.getSystemClipboard();
     ClipboardContent contents = new ClipboardContent();
 
     contents.put(DataFormat.PLAIN_TEXT, data);
-    clipboard.setContent(contents);
+    this.clipboard.setContent(contents);
   }
 
   /**
    * Empties the JavaFX System Clipboard.
    */
   public void emptyClipboard() {
-    Clipboard clipboard = Clipboard.getSystemClipboard();
-
-    clipboard.setContent(null);
+    this.clipboard.setContent(null);
   }
 
   /**
@@ -80,8 +80,6 @@ public class JavaFXClipboardWrapper {
    * @return Boolean true if the clipboard is empty, false otherwise.
    */
   public Boolean isClipboardEmpty() {
-    Clipboard clipboard = Clipboard.getSystemClipboard();
-
-    return clipboard.getContentTypes().isEmpty();
+    return this.clipboard.getContentTypes().isEmpty();
   }
 }
