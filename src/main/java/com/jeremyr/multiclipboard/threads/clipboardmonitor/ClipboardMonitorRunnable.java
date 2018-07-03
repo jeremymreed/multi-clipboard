@@ -23,11 +23,11 @@
  */
 package com.jeremyr.multiclipboard.threads.clipboardmonitor;
 
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.input.Clipboard;
 
 /**
  * This runnable is responsible for checking the JavaFX clipboard for changes, and
@@ -57,7 +57,7 @@ public class ClipboardMonitorRunnable implements Runnable {
   private final AtomicBoolean shouldNukeClipboard;
 
   /** Reference to the JavaFX Clipboard. */
-  private final Clipboard clipboard;
+  private final JavaFXClipboardWrapper clipboard;
 
   /**
    * Controller with dependencies passed in.
@@ -69,7 +69,7 @@ public class ClipboardMonitorRunnable implements Runnable {
    */
   public ClipboardMonitorRunnable(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboard = Clipboard.getSystemClipboard();
+    this.clipboard = new JavaFXClipboardWrapper();
     this.clipboardContents = text;
     this.shouldNukeClipboard = shouldNukeClipboard;
   }
@@ -84,30 +84,22 @@ public class ClipboardMonitorRunnable implements Runnable {
   public void run() {
     try {
       if (this.shouldNukeClipboard.get()) {
-        clipboard.setContent(null);
+        this.clipboard.emptyClipboard();
         this.clipboardContents.set("");
       } else {
-        if (this.clipboard.hasString() && this.clipboard.getString() != null) {
-          String data = this.clipboard.getString();
+        String data = this.clipboard.readClipboard();
 
-          if (data == null) {
-            this.logger.error("data is null!");
-          }
+        if (data == null) {
+          this.logger.error("data is null!");
+        }
 
-          if (data != null) {
-            this.clipboardContents.set(data);
-          } else {
-            this.clipboardContents.set("");
-          }
+        if (data != null) {
+          this.clipboardContents.set(data);
         } else {
           this.clipboardContents.set("");
         }
       }
     } catch (NullPointerException nullPointerException) {
-      if (this.clipboard == null) {
-        this.logger.error("clipboard is null", nullPointerException);
-      }
-
       if (this.clipboardContents == null) {
         this.logger.error("this.text is null!", nullPointerException);
       }

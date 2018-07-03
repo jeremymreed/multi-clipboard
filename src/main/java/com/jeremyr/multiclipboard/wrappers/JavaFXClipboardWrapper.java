@@ -35,7 +35,7 @@ import javafx.scene.input.DataFormat;
  */
 public class JavaFXClipboardWrapper {
 
-  private Clipboard clipboard;
+  private final Clipboard clipboard;
 
   public JavaFXClipboardWrapper() {
     this.clipboard = Clipboard.getSystemClipboard();
@@ -47,7 +47,7 @@ public class JavaFXClipboardWrapper {
    * @return A String with either the contents of the JavaFX System Clipboard or an empty string.
    */
   public String readClipboard() {
-    if (this.clipboard.hasString()) {
+    if (this.clipboard.hasString() && this.clipboard.getString() != null) {
       return this.clipboard.getString();
     } else {
       return "";
