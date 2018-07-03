@@ -17,11 +17,9 @@ import javafx.scene.control.TextArea;
  */
 public class DataTableRowSelectionListener<T extends BufferBase> implements ChangeListener<T> {
   private final TextArea bufferTextArea;
-  private final SimpleStringProperty clipboardContents;
 
   public DataTableRowSelectionListener(TextArea bufferTextArea, SimpleStringProperty clipboardContents) {
     this.bufferTextArea = bufferTextArea;
-    this.clipboardContents = clipboardContents;
   }
 
   @Override
