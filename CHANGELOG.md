@@ -48,15 +48,41 @@
 * Styling changes.
 
 ### v2.3.1 (2018-03-09)
+* Fix null pointer errors.
+
+### v2.3.0 (2018-03-09)
+* Add Clear Buffer button.
+* Add Buffer Wrap Text radio button.
+* Clean up status messages.
 
 ### v2.2.0 (2018-03-09)
+* Convert to Maven project.
 
 ### v2.1.1 (2018-03-08)
+* Add exception handling.  (Getting NPEs)
+* Add Logging.
+* Add integration tests for the clipboard interface.
+* Add a method to make the system clipboard empty.
 
 ### v2.1.0 (2018-02-25)
+* Add a method to determine if the system clipboard is empty.
+* Handle empty system clipboard properly.
 
 ### v2.0.0 (2018-02-23)
+* Add Clipboard Monitor Threads.
+* Buffer is no longer editable, now holds system clipboard value.
+* Cache system clipboard's old value, and only change clipboard text area when the system clipboard's value changes.
+* Add ThreadManager. (Start and Stop/Shutdown threads)
+* Add buffer Text Area.
+* Add Clear Clipboard button.
+* Add Clipboard Wrap Text radio button.
+* Set a title for the application's window.
 
 ### v1.0.1 (2018-02-15)
+* Fix FXML layout file to avoid exception.
 
 ### v1.0.0 (2018-02-11)
+* Initial release.
+* Create a basic UI.
+* Can read in from clipboard, and write to clipboard.
+* Editable buffer.
