@@ -1,3 +1,6 @@
+### v5.2.0
+* Acceptance Testing.
+
 ### v5.1.3
 * Gitlab CI setup.
 * License Header cleanup.
