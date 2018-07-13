@@ -29,13 +29,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
 
 /**
  *
@@ -55,8 +59,11 @@ public class ToggleBufferWrapTextAcceptanceTest extends ApplicationTest {
   }
 
   @After
-  public void tearDown() {
-  }
+   public void tearDown() throws Exception {
+     FxToolkit.hideStage();
+     release(new KeyCode[]{});
+     release(new MouseButton[]{});
+   }
 
   // TODO add test methods here.
   // The methods must be annotated with annotation @Test. For example:
@@ -71,6 +78,9 @@ public class ToggleBufferWrapTextAcceptanceTest extends ApplicationTest {
     boolean initialTextAreaState = bufferTextArea.wrapTextProperty().get();
 
     clickOn("#bufferTextAreaWrapTextRadioButton");
+
+    // Wait for user interaction events to complete before running assertions.
+    WaitForAsyncUtils.waitForFxEvents();
 
     // Did the radio button state change properly?
     Assert.assertEquals("The Toggle Buffer Wrap Text radio button was not toggled properly!",
