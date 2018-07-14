@@ -57,7 +57,7 @@ public class ButtonCell extends TableCell<BufferBase, Boolean> {
 
       ObservableList<BufferBase> bufferList = this.dataTable.getItems();
       BufferBase buffer = bufferList.get(getIndex());
-      this.cellButton.setId("button-warning");
+      this.cellButton.getStyleClass().add("button-warning");
       this.cellButton.setOnAction(new RemoveButtonEventHandler(buffer.getIndex(), bufferList));
     }
   }
