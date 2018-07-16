@@ -87,6 +87,7 @@ public class ClipboardInterfaceController {
   @FXML
   private RadioButton clipboardTextAreaWrapTextRadioButton;
 
+  /* TODO: Change this variable name to something less ambiguous */
   int nextIndex;
 
   /**
