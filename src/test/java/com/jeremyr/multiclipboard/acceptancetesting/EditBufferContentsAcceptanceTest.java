@@ -33,7 +33,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -79,13 +78,13 @@ public class EditBufferContentsAcceptanceTest extends ApplicationTest {
     dataTable.setItems(testData);
 
     // Wait for user interaction events to complete before running assertions.
-    WaitForAsyncUtils.waitForFxEvents();    
+    WaitForAsyncUtils.waitForFxEvents();
 
     clickOn(TableViewTestUtils.getNodeAt(1, 1, dataTable));
 
     clickOn("#bufferTextArea");
     write("Foo!");
 
-    Assert.assertEquals("Did not edit the buffer name correctly!", "Foo!", test2.getData());
+    Assert.assertEquals("Did not edit the buffer's contents properly!", "Foo!", test2.getData());
   }
 }
