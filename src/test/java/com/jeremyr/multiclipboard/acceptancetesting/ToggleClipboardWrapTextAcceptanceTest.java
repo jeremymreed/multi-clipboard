@@ -24,7 +24,6 @@
 package com.jeremyr.multiclipboard.acceptancetesting;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.jeremyr.multiclipboard.MultiClipboard;
 import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
 import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
@@ -39,7 +38,6 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import junit.framework.Assert;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 import org.slf4j.LoggerFactory;

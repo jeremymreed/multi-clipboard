@@ -24,7 +24,6 @@
 package com.jeremyr.multiclipboard.acceptancetesting;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.jeremyr.multiclipboard.MultiClipboard;
 import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
