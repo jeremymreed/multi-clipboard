@@ -32,7 +32,7 @@ import javafx.scene.input.DataFormat;
  *
  * @author jeremyr
  */
-public class JavaFXClipboardWrapper {
+public class JavaFXClipboardWrapper implements ClipboardWrapperInterface {
 
   private final Clipboard clipboard;
 

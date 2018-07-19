@@ -66,10 +66,12 @@ public class ClearBufferAcceptanceTest extends ApplicationTest {
 
     Parent root = (Parent)fxmlLoader.load();
 
+    JavaFXClipboardWrapper javaFXClipboardWrapper = new JavaFXClipboardWrapper();
+
     clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
     clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
 
-    this.threadManager.spawnThreads(clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
+    this.threadManager.spawnThreads(javaFXClipboardWrapper, clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
 
     stage.setScene(new Scene(root));
     stage.show();

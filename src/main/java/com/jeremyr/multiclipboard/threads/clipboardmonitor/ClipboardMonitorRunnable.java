@@ -23,6 +23,7 @@
  */
 package com.jeremyr.multiclipboard.threads.clipboardmonitor;
 
+import com.jeremyr.multiclipboard.wrappers.ClipboardWrapperInterface;
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
@@ -57,19 +58,20 @@ public class ClipboardMonitorRunnable implements Runnable {
   private final AtomicBoolean shouldNukeClipboard;
 
   /** Reference to the JavaFX Clipboard. */
-  private final JavaFXClipboardWrapper clipboard;
+  private final ClipboardWrapperInterface clipboard;
 
   /**
    * Controller with dependencies passed in.
    * Set up data members.
    *
+   * @param clipboardInterface Interface to the system clipboard.
    * @param text The SimpleStringProperty Observable Value bound to the clipboard TextArea.
    * @param shouldNukeClipboard The AtomicBoolean that controls the Clipboard Monitor's
    * nuke clipboard feature.
    */
-  public ClipboardMonitorRunnable(SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
+  public ClipboardMonitorRunnable(ClipboardWrapperInterface clipboardInterface, SimpleStringProperty text, AtomicBoolean shouldNukeClipboard) {
     this.logger = LoggerFactory.getLogger("MultiClipboard");
-    this.clipboard = new JavaFXClipboardWrapper();
+    this.clipboard = clipboardInterface;
     this.clipboardContents = text;
     this.shouldNukeClipboard = shouldNukeClipboard;
   }

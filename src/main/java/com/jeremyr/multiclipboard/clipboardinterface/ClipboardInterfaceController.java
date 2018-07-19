@@ -30,6 +30,7 @@ import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import com.jeremyr.multiclipboard.Version;
+import com.jeremyr.multiclipboard.wrappers.ClipboardWrapperInterface;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -93,7 +94,7 @@ public class ClipboardInterfaceController {
   /**
    * JavaFX System Clipboard Wrapper object.
    */
-  private JavaFXClipboardWrapper clipboardInterface;
+  private ClipboardWrapperInterface clipboardInterface;
 
   /* Passed in to ClipboardBuffer. Updated by the ClipboardMonitor */
   private SimpleStringProperty clipboardContents;
@@ -107,8 +108,8 @@ public class ClipboardInterfaceController {
     this.nextIndex = 0;
   }
 
-  public void setJavaFXClipboardWrapper(JavaFXClipboardWrapper javaFXClipboardWrapper) {
-    this.clipboardInterface = javaFXClipboardWrapper;
+  public void setJavaFXClipboardWrapper(ClipboardWrapperInterface clipboardInterface) {
+    this.clipboardInterface = clipboardInterface;
   }
 
   public void initialize() {

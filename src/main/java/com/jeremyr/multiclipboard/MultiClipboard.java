@@ -65,10 +65,12 @@ public class MultiClipboard extends Application {
 
     Parent root = (Parent)fxmlLoader.load();
 
+    JavaFXClipboardWrapper clipboardInterface = new JavaFXClipboardWrapper();
+
     this.clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
     this.clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
 
-    this.threadManager.spawnThreads(this.clipboardInterfaceController.getClipboardContents(), this.clipboardInterfaceController.getShouldNukeClipboard());
+    this.threadManager.spawnThreads(clipboardInterface, this.clipboardInterfaceController.getClipboardContents(), this.clipboardInterfaceController.getShouldNukeClipboard());
 
     Scene scene = new Scene(root);
 
