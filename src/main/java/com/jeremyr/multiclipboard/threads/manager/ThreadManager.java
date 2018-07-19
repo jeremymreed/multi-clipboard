@@ -46,6 +46,7 @@ public class ThreadManager {
 
   /** Get the Thread Pool */
   public ThreadManager() {
+    System.out.println("Initialized the ThreadManager!");
     this.logger = LoggerFactory.getLogger("MultiClipboard");
     this.executorService = Executors.newCachedThreadPool();
   }

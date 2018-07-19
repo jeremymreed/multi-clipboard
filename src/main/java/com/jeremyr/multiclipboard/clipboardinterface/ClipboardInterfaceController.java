@@ -93,7 +93,7 @@ public class ClipboardInterfaceController {
   /**
    * JavaFX System Clipboard Wrapper object.
    */
-  final private JavaFXClipboardWrapper clipboardInterface;
+  private JavaFXClipboardWrapper clipboardInterface;
 
   /* Passed in to ClipboardBuffer. Updated by the ClipboardMonitor */
   private SimpleStringProperty clipboardContents;
@@ -102,10 +102,13 @@ public class ClipboardInterfaceController {
   private final AtomicBoolean shouldNukeClipboard;
 
   public ClipboardInterfaceController() {
-    this.clipboardInterface = new JavaFXClipboardWrapper();
     this.shouldNukeClipboard = new AtomicBoolean();
     this.shouldNukeClipboard.set(false);
     this.nextIndex = 0;
+  }
+
+  public void setJavaFXClipboardWrapper(JavaFXClipboardWrapper javaFXClipboardWrapper) {
+    this.clipboardInterface = javaFXClipboardWrapper;
   }
 
   public void initialize() {

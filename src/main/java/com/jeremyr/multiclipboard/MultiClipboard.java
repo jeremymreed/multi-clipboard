@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 
 /**
  * Main class entry point for the MultiClipboard JavaFX application.
@@ -65,6 +66,7 @@ public class MultiClipboard extends Application {
     Parent root = (Parent)fxmlLoader.load();
 
     this.clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
+    this.clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
 
     this.threadManager.spawnThreads(this.clipboardInterfaceController.getClipboardContents(), this.clipboardInterfaceController.getShouldNukeClipboard());
 
