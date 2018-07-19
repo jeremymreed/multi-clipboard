@@ -24,6 +24,7 @@
 package com.jeremyr.multiclipboard.acceptancetesting;
 
 import ch.qos.logback.classic.LoggerContext;
+import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
@@ -66,12 +67,12 @@ public class ClearBufferAcceptanceTest extends ApplicationTest {
 
     Parent root = (Parent)fxmlLoader.load();
 
-    JavaFXClipboardWrapper javaFXClipboardWrapper = new JavaFXClipboardWrapper();
+    JavaFXClipboardFake javaFXClipboardFake = new JavaFXClipboardFake();
 
     clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
     clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
 
-    this.threadManager.spawnThreads(javaFXClipboardWrapper, clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
+    this.threadManager.spawnThreads(javaFXClipboardFake, clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
 
     stage.setScene(new Scene(root));
     stage.show();
