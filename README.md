@@ -5,7 +5,6 @@ Clipboard Manager
 * master: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/master/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/master)
 * develop: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/develop)
 * acceptance-testing: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/feature/acceptance-testing/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/feature/acceptance-testing)
-* dependency-injection: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/feature/refactor/dependency-injection/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/feature/refactor/dependency-injection)
 
 ======================================
 ### Table of Contents
