@@ -23,11 +23,16 @@
  */
 package com.jeremyr.multiclipboard.acceptancetesting;
 
+import ch.qos.logback.classic.LoggerContext;
 import com.jeremyr.multiclipboard.MultiClipboard;
+import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
 import com.jeremyr.multiclipboard.buffertableview.buttoncell.ButtonCell;
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
+import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
 import com.jeremyr.multiclipboard.testutils.TableViewTestUtils;
+import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
+import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +46,7 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
+import org.slf4j.LoggerFactory;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
@@ -50,12 +56,36 @@ import org.testfx.util.WaitForAsyncUtils;
  * @author jeremyr
  */
 public class RemoveBufferAcceptanceTest extends ApplicationTest {
+  private ThreadManager threadManager;
+
   @Override
   public void start(Stage stage) throws Exception {
-    Parent mainNode = FXMLLoader.load(MultiClipboard.class.getResource("/fxml/ClipboardInterfaceLayout.fxml"));
-    stage.setScene(new Scene(mainNode));
+    ClipboardInterfaceController clipboardInterfaceController;
+    this.threadManager = new ThreadManager();
+
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
+
+    Parent root = (Parent)fxmlLoader.load();
+
+    JavaFXClipboardFake javaFXClipboardFake = new JavaFXClipboardFake();
+
+    clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
+    clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
+
+    this.threadManager.spawnThreads(javaFXClipboardFake, clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
+
+    stage.setScene(new Scene(root));
     stage.show();
     stage.toFront();
+  }
+
+  @Override
+  public void stop() {
+    System.out.println("stop() called");
+    this.threadManager.stopThreads();
+
+    LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    loggerContext.stop();
   }
 
   @After

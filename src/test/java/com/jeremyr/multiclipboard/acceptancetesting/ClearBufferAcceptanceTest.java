@@ -62,7 +62,6 @@ public class ClearBufferAcceptanceTest extends ApplicationTest {
     ClipboardInterfaceController clipboardInterfaceController;
     this.threadManager = new ThreadManager();
 
-    //Parent mainNode = FXMLLoader.load(MultiClipboard.class.getResource("/fxml/ClipboardInterfaceLayout.fxml"));
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ClipboardInterfaceLayout.fxml"));
 
     Parent root = (Parent)fxmlLoader.load();
