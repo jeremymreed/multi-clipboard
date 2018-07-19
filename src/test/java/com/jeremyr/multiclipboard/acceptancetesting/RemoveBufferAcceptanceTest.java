@@ -31,7 +31,6 @@ import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
 import com.jeremyr.multiclipboard.testutils.TableViewTestUtils;
 import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
-import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +55,7 @@ import org.testfx.util.WaitForAsyncUtils;
  */
 public class RemoveBufferAcceptanceTest extends ApplicationTest {
   private ThreadManager threadManager;
+  private JavaFXClipboardFake javaFXClipboardFake;
 
   @Override
   public void start(Stage stage) throws Exception {
@@ -66,10 +66,10 @@ public class RemoveBufferAcceptanceTest extends ApplicationTest {
 
     Parent root = (Parent)fxmlLoader.load();
 
-    JavaFXClipboardFake javaFXClipboardFake = new JavaFXClipboardFake();
+    this.javaFXClipboardFake = new JavaFXClipboardFake();
 
     clipboardInterfaceController = (ClipboardInterfaceController) fxmlLoader.getController();
-    clipboardInterfaceController.setJavaFXClipboardWrapper(new JavaFXClipboardWrapper());
+    clipboardInterfaceController.setJavaFXClipboardWrapper(this.javaFXClipboardFake);
 
     this.threadManager.spawnThreads(javaFXClipboardFake, clipboardInterfaceController.getClipboardContents(), clipboardInterfaceController.getShouldNukeClipboard());
 

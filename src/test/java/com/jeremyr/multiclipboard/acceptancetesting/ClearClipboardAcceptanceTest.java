@@ -27,7 +27,6 @@ import ch.qos.logback.classic.LoggerContext;
 import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
 import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
-import com.jeremyr.multiclipboard.wrappers.JavaFXClipboardWrapper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
