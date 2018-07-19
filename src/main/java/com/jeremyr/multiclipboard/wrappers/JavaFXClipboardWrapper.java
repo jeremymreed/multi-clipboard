@@ -45,6 +45,7 @@ public class JavaFXClipboardWrapper implements ClipboardWrapperInterface {
    *
    * @return A String with either the contents of the JavaFX System Clipboard or an empty string.
    */
+  @Override
   public String readClipboard() {
     if (this.clipboard.hasString() && this.clipboard.getString() != null) {
       return this.clipboard.getString();
@@ -58,6 +59,7 @@ public class JavaFXClipboardWrapper implements ClipboardWrapperInterface {
    *
    * @param data The String data to write to the clipboard.
    */
+  @Override
   public void writeClipboard(String data) {
     ClipboardContent contents = new ClipboardContent();
 
@@ -68,6 +70,7 @@ public class JavaFXClipboardWrapper implements ClipboardWrapperInterface {
   /**
    * Empties the JavaFX System Clipboard.
    */
+  @Override
   public void emptyClipboard() {
     this.clipboard.setContent(null);
   }
@@ -78,6 +81,7 @@ public class JavaFXClipboardWrapper implements ClipboardWrapperInterface {
    *
    * @return Boolean true if the clipboard is empty, false otherwise.
    */
+  @Override
   public Boolean isClipboardEmpty() {
     return this.clipboard.getContentTypes().isEmpty();
   }
