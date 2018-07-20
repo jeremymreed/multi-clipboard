@@ -30,12 +30,14 @@ import com.jeremyr.multiclipboard.threads.manager.ThreadManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Test;
+import org.loadui.testfx.GuiTest;
 import org.slf4j.LoggerFactory;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
@@ -89,6 +91,7 @@ public class ClearClipboardAcceptanceTest extends ApplicationTest {
 
   @Test
   public void testClearClipboardAcceptanceTest() {
+    TextArea clipboardTextArea = (TextArea) GuiTest.find("#clipboardTextArea");
     this.javaFXClipboardFake.writeClipboard("Foo Bar!");
 
     // Wait for user interaction events to complete before running assertions.
@@ -97,5 +100,6 @@ public class ClearClipboardAcceptanceTest extends ApplicationTest {
     clickOn("#clearClipboardButton");
     
     Assert.assertEquals("The clipboard was not cleared properly!", "", this.javaFXClipboardFake.readClipboard());
+    Assert.assertEquals("The clipboard TextArea textProperty was not equal to an empty string!", "", clipboardTextArea.textProperty().get());
   }
 }
