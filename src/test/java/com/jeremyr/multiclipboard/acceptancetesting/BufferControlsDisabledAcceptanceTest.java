@@ -41,7 +41,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import org.loadui.testfx.GuiTest;
@@ -55,7 +54,7 @@ import org.testfx.util.WaitForAsyncUtils;
  * @author jeremyr
  */
 public class BufferControlsDisabledAcceptanceTest extends ApplicationTest {
-  
+
   private ThreadManager threadManager;
   private JavaFXClipboardFake javaFXClipboardFake;
 
@@ -97,7 +96,8 @@ public class BufferControlsDisabledAcceptanceTest extends ApplicationTest {
   }
 
   /*
-   * This acceptance test verifies that the buffer's controls are disabled.
+   * This acceptance test verifies that the buffer's controls are disabled when there are no buffers
+   * in the Buffer TableView.
    *  - Clear Buffer Button.
    *  - Read From Clipboard Button.
    *  - Write To Clipboard Button.
@@ -109,15 +109,15 @@ public class BufferControlsDisabledAcceptanceTest extends ApplicationTest {
     Button readFromClipboardButton = (Button) GuiTest.find("#readFromClipboardButton");
     Button writeToClipboardButton = (Button) GuiTest.find("#writeToClipboardButton");
     TextArea bufferTextArea = (TextArea) GuiTest.find("#bufferTextArea");
-    
+
     TableView<BufferBase> dataTable = (TableView<BufferBase>) GuiTest.find("#dataTable");
     ObservableList<BufferBase> testData = FXCollections.observableArrayList();
 
     dataTable.setItems(testData);
-    
+
     // Wait for user interaction events to complete before running assertions.
     WaitForAsyncUtils.waitForFxEvents();
-    
+
     Assert.assertEquals("The buffer TableView was not empty!", 0, dataTable.getItems().size());
     Assert.assertTrue("The Clear Buffer Button was not disabled!", clearBufferButton.isDisabled());
     Assert.assertTrue("The Read From Clipboard Button was not disabled!", readFromClipboardButton.isDisabled());
