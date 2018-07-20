@@ -122,7 +122,7 @@ public class BufferWriteToClipboardAcceptanceTest extends ApplicationTest {
     /*
      * NOTE: Sleep to allow Clipboard Monitor threads to pick up on the change to the clipboard, and update
      * the Clipboard TextArea textProperty properly.
-    */
+     */
     Thread.sleep(500);
 
     Assert.assertEquals("The buffer's contents were not written to the clipboard!", expected, this.javaFXClipboardFake.readClipboard());
