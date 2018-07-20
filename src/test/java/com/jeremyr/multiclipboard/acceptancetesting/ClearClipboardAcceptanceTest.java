@@ -90,7 +90,7 @@ public class ClearClipboardAcceptanceTest extends ApplicationTest {
   }
 
   @Test
-  public void testClearClipboardAcceptanceTest() {
+  public void testClearClipboardAcceptanceTest() throws InterruptedException {
     TextArea clipboardTextArea = (TextArea) GuiTest.find("#clipboardTextArea");
     this.javaFXClipboardFake.writeClipboard("Foo Bar!");
 
@@ -98,6 +98,12 @@ public class ClearClipboardAcceptanceTest extends ApplicationTest {
     WaitForAsyncUtils.waitForFxEvents();
 
     clickOn("#clearClipboardButton");
+
+    /*
+     * NOTE: Sleep to allow Clipboard Monitor threads to pick up on the change to the clipboard, and update
+     * the Clipboard TextArea textProperty properly.
+     */
+    Thread.sleep(500);
 
     Assert.assertEquals("The clipboard was not cleared properly!", "", this.javaFXClipboardFake.readClipboard());
     Assert.assertEquals("The clipboard TextArea textProperty was not equal to an empty string!", "", clipboardTextArea.textProperty().get());

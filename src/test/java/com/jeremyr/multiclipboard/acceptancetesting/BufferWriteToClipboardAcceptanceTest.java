@@ -119,6 +119,12 @@ public class BufferWriteToClipboardAcceptanceTest extends ApplicationTest {
     clickOn(TableViewTestUtils.getNodeAt(0, 1, dataTable));
     clickOn("#writeToClipboardButton");
 
+    /*
+     * NOTE: Sleep to allow Clipboard Monitor threads to pick up on the change to the clipboard, and update
+     * the Clipboard TextArea textProperty properly.
+    */
+    Thread.sleep(500);
+
     Assert.assertEquals("The buffer's contents were not written to the clipboard!", expected, this.javaFXClipboardFake.readClipboard());
     Assert.assertEquals("The Clipboard TextArea textProperty does not contain the buffer's contents!", expected, clipboardTextArea.textProperty().get());
   }
