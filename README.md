@@ -8,8 +8,8 @@ Clipboard Manager
 
 ======================================
 ### Table of Contents
-1. [Usage](https://gitlab.com/jeremymreed/mines#usage)
-2. [License](https://gitlab.com/jeremymreed/mines#license)
+1. [Usage](https://gitlab.com/jeremymreed/multi-clipboard#usage)
+2. [License](https://gitlab.com/jeremymreed/multi-clipboard#license)
 
 
 # Usage:
