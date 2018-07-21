@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mainClass>com.jeremyr.multiclipboard.MultiClipboard</mainClass>
-        <type>alpha</type>
+        <type>release</type>
     </properties>
 
     <organization>
