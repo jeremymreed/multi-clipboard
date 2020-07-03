@@ -25,7 +25,6 @@ package com.jeremyr.multiclipboard.acceptancetesting;
 
 import ch.qos.logback.classic.LoggerContext;
 import com.jeremyr.multiclipboard.acceptancetesting.fakes.JavaFXClipboardFake;
-import com.jeremyr.multiclipboard.buffertableview.buttoncell.ButtonCell;
 import com.jeremyr.multiclipboard.buffertableview.models.Buffer;
 import com.jeremyr.multiclipboard.buffertableview.models.BufferBase;
 import com.jeremyr.multiclipboard.clipboardinterface.ClipboardInterfaceController;
@@ -114,8 +113,11 @@ public class RemoveBufferAcceptanceTest extends ApplicationTest {
     // Wait for user interaction events to complete before running assertions.
     WaitForAsyncUtils.waitForFxEvents();
 
-    clickOn((ButtonCell) TableViewTestUtils.getNodeAt(1, 2, dataTable));
-    clickOn((ButtonCell) TableViewTestUtils.getNodeAt(0, 2, dataTable));
+    int numRemoveButtons = TableViewTestUtils.getNumRemoveButtons(dataTable);
+
+    for (int i = 0 ; i < numRemoveButtons ; i++) {
+      clickOn(".button-warning");
+    }
 
     Assert.assertEquals("Buffers were not removed properly!", 0, dataTable.getItems().size());
   }
