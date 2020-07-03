@@ -69,4 +69,24 @@ public class TableViewTestUtils {
 
     return retval;
   }
+
+  /**
+   * Gets the number of Remove buttons in the table.
+   * We're assuming that our Remove buttons will have the CSS class button-warning, and no other elements
+   * have this styling.  We may want to rename the CSS class to remove-button-warning to be more specific.
+   * 
+   * @param table TableView containing our Nodes.
+   * @return The number of Nodes w/ the CSS class button-warning.
+  */
+  public static int getNumRemoveButtons(TableView table) {
+
+    if (table != null) {
+      Set<Node> nodes = table.lookupAll(".button-warning");
+      ArrayList<Node> nodesList = new ArrayList<>();
+      nodesList.addAll(nodes);
+      return nodesList.size();
+    } else {
+      throw new NullPointerException("table is null!");
+    }
+  }
 }
