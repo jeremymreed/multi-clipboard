@@ -10,11 +10,9 @@ Clipboard Manager
 1. [Usage](https://gitlab.com/jeremymreed/multi-clipboard#usage)
 2. [License](https://gitlab.com/jeremymreed/multi-clipboard#license)
 
-![Multiclipboard screenshot](images/multiclipboard-empty.png "No Buffers")
-
 |   |   |   |
 |---|---|---|
-| [![Multiclipboard screenshot](images/multiclipboard-empty-thumb.png "No Buffers")](https://gitlab.com/jeremymreed/multi-clipboard/images/multiclipboard-empty.png) | Test 1 | Test 2 |
+| [![Multiclipboard screenshot](images/multiclipboard-empty-thumb.png "No Buffers")](https://gitlab.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-empty.png) | Test 1 | Test 2 |
 
 # Usage:
 This is a maven project.
