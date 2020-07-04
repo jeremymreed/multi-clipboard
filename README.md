@@ -12,6 +12,10 @@ Clipboard Manager
 
 ![Multiclipboard screenshot](images/multiclipboard-empty.png "No Buffers")
 
+|   |   |   |
+|---|---|---|
+| [![Multiclipboard screenshot](images/multiclipboard-empty-thumb.png "No Buffers")](https://gitlab.com/jeremymreed/multi-clipboard/images/multiclipboard-empty.png) | Test 1 | Test 2 |
+
 # Usage:
 This is a maven project.
 
