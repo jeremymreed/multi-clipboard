@@ -2,11 +2,10 @@
 # Gitlab CI config
 # This is a Maven project, using JUnit and Mockito.
 
-image: maven:3.6.3-openjdk-8
+image: mgoo2/openjfx
 
 before_script:
   - apt-get update
-  - apt-get install -y openjfx
   - apt-get install -y xvfb
   - Xvfb :99 &>/dev/null &
   - export DISPLAY=:99
