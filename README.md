@@ -4,7 +4,7 @@ Clipboard Manager
 ### STATUS:
 * master: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/master/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/master)
 * develop: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/develop)
-* gitlab-ci-update-docker-image: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/gitlab-ci-update-docker-image/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/gitlab-ci-update-docker-image)
+* feature/gitlab-ci-update-docker-image: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/feature/gitlab-ci-update-docker-image/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/feature/gitlab-ci-update-docker-image)
 
 ======================================
 ### Table of Contents
