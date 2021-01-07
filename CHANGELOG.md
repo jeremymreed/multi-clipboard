@@ -1,3 +1,22 @@
+### v5.2.6
+* Added instructions on how to run tests.
+
+### v5.2.5
+* Added detailed usage information to README.
+
+### v5.2.4
+* Fixed image hover text for screenshots on the README.
+
+### v5.2.3
+* Added screenshots to README.
+* Fixed formatting of date/time in TimeManager.getFormattedDateWithZone()
+
+### v5.2.2
+* Removed Gitlab CI badge for gitlab-ci-update-docker-image branch.
+
+### v5.2.1
+* Updated docker image used for Gitlab CI testing.
+
 ### v5.2.0
 * Acceptance Testing.
 
