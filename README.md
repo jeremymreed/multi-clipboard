@@ -48,6 +48,11 @@ To build:
 mvn package
 ```
 
+To run tests:
+```
+mvn test
+```
+
 This will produce a jar in target/.  Move this jar wherever you want.
 I use ~/Programs/Multiclipboard.
 
