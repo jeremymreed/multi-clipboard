@@ -1,5 +1,8 @@
-### v5.2.5
+### v5.2.6
 * Added instructions on how to run tests.
+
+### v5.2.5
+* Added detailed usage information to README.
 
 ### v5.2.4
 * Fixed image hover text for screenshots on the README.
