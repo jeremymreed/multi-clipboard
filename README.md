@@ -1,20 +1,15 @@
 Clipboard Manager
 ======================================
 
-### STATUS:
-* master: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/master/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/master)
-* develop: [![pipeline status](https://gitlab.com/jeremymreed/multi-clipboard/badges/develop/pipeline.svg)](https://gitlab.com/jeremymreed/multi-clipboard/commits/develop)
-
-======================================
 ### Table of Contents
-1. [Usage](https://gitlab.com/jeremymreed/multi-clipboard#usage)
-2. [Requirements](https://gitlab.com/jeremymreed/multi-clipboard#requirements)
-3. [Building](https://gitlab.com/jeremymreed/multi-clipboard#building)
-4. [License](https://gitlab.com/jeremymreed/multi-clipboard#license)
+1. [Usage](https://github.com/jeremymreed/multi-clipboard#usage)
+2. [Requirements](https://github.com/jeremymreed/multi-clipboard#requirements)
+3. [Building](https://github.com/jeremymreed/multi-clipboard#building)
+4. [License](https://github.com/jeremymreed/multi-clipboard#license)
 
 | No Buffers | Single Buffer | Multiple Buffers |
 |---|---|---|
-| [![Multiclipboard screenshot](images/multiclipboard-empty-thumb.png "No Buffers")](https://gitlab.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-empty.png) | [![Multiclipboard screenshot](images/multiclipboard-single-buffer-thumb.png "Single Buffer")](https://gitlab.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-single-buffer.png) | [![Multiclipboard screenshot](images/multiclipboard-multiple-buffers-thumb.png "Multiple Buffers")](https://gitlab.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-multiple-buffers.png) |
+| [![Multiclipboard screenshot](images/multiclipboard-empty-thumb.png "No Buffers")](https://github.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-empty.png) | [![Multiclipboard screenshot](images/multiclipboard-single-buffer-thumb.png "Single Buffer")](https://github.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-single-buffer.png) | [![Multiclipboard screenshot](images/multiclipboard-multiple-buffers-thumb.png "Multiple Buffers")](https://github.com/jeremymreed/multi-clipboard/-/blob/feature/update-readme-with-thumbnails/images/multiclipboard-multiple-buffers.png) |
 
 # Usage:
 This software allows you to emulate a multiclipboard.  It is capable of reading from and writing to your system clipboard.

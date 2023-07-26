@@ -21,8 +21,8 @@
     </organization>
 
     <scm>
-      <connection>scm:git:git@gitlab.com:jeremymreed/multi-clipboard.git</connection>
-      <url>https://gitlab.com/jeremymreed/multi-clipboard/</url>
+      <connection>scm:git:git@github.com:jeremymreed/multi-clipboard.git</connection>
+      <url>https://github.com/jeremymreed/multi-clipboard/</url>
       <tag>${project.version}</tag>
     </scm>
 
