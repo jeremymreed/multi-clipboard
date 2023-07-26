@@ -8,8 +8,9 @@ Clipboard Manager
 ======================================
 ### Table of Contents
 1. [Usage](https://gitlab.com/jeremymreed/multi-clipboard#usage)
-2. [Building](https://gitlab.com/jeremymreed/multi-clipboard#building)
-3. [License](https://gitlab.com/jeremymreed/multi-clipboard#license)
+2. [Requirements](https://gitlab.com/jeremymreed/multi-clipboard#requirements)
+3. [Building](https://gitlab.com/jeremymreed/multi-clipboard#building)
+4. [License](https://gitlab.com/jeremymreed/multi-clipboard#license)
 
 | No Buffers | Single Buffer | Multiple Buffers |
 |---|---|---|
@@ -40,10 +41,17 @@ Below this window, are buttons to 'Read From Clipboard', 'Write To Clipboard', a
 
 Finally, there is another radio button to toggle 'Wrap Text' controlling line wrapping in the buffer contents window.
 
+# Requirements:
+
+This software will run in either Xorg or Wayland environments.
+
+1. Java 8 and JavaFX 8.
+2. Maven.
+
 # Building:
 This is a maven project.
 
-To build:
+To build: (This will compile, run tests, and build a JAR)
 ```
 mvn package
 ```
